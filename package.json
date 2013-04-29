@@ -1,0 +1,37 @@
+{
+  "name": "jmx",
+  "version": "0.0.0",
+  "description": "node.js library to communicate with java applications through JMX.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodeunit test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onddo/node-jmx.git"
+  },
+  "keywords": [
+    "jmx",
+    "java",
+    "jvm"
+  ],
+  "author": {
+    "name": "Xabier de Zuazo",
+    "email": "xabier@onddo.com",
+    "url": "https://github.com/zuazo"
+  },
+  "licenses": [ {
+    "type": "Apache 2.0",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  } ],
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "java": "0.2.3"
+  },
+  "devDependencies": {
+    "nodeunit": "~0.8.0"
+  }
+}
