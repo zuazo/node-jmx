@@ -21,6 +21,10 @@ client.read("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
 client.write("java.lang:type=Memory", "Verbose", true, function(data) {
   console.log("Memory verbose on"); // callback is optional
 });
+
+client.invoke("java.lang:type=Memory", "gc", [], function(data) {
+  console.log("gc() done");
+});
 ```
 
 ```js
