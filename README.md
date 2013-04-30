@@ -14,7 +14,8 @@ client = jmx.createClient({
   port: 3000
 });
 
-client.connect(function() {
+client.connect();
+client.on("connect", function() {
   client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
     console.log(data.toString());
   });
