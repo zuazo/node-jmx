@@ -14,16 +14,18 @@ client = jmx.createClient({
   port: 3000
 });
 
-client.read("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
-  console.log(data.toString());
-});
+client.connect(function() {
+  client.read("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
+    console.log(data.toString());
+  });
 
-client.write("java.lang:type=Memory", "Verbose", true, function(data) {
-  console.log("Memory verbose on"); // callback is optional
-});
+  client.write("java.lang:type=Memory", "Verbose", true, function(data) {
+    console.log("Memory verbose on"); // callback is optional
+  });
 
-client.invoke("java.lang:type=Memory", "gc", [], function(data) {
-  console.log("gc() done");
+  client.invoke("java.lang:type=Memory", "gc", [], function(data) {
+    console.log("gc() done");
+  });
 });
 ```
 
