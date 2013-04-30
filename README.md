@@ -15,11 +15,11 @@ client = jmx.createClient({
 });
 
 client.connect(function() {
-  client.read("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
+  client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
     console.log(data.toString());
   });
 
-  client.write("java.lang:type=Memory", "Verbose", true, function(data) {
+  client.setAttribute("java.lang:type=Memory", "Verbose", true, function(data) {
     console.log("Memory verbose on"); // callback is optional
   });
 
