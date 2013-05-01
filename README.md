@@ -36,6 +36,25 @@ client = jmx.createClient({
 });
 ```
 
+### Error handling
+
+Errors are **not printed** to the console by default. You can catch them with something like the following:
+
+```js
+client.on("error", function(err) {
+  // ...
+});
+```
+
+## Debugging
+
+You can enable debugging and error printing to console using `NODE_DEBUG` environment variable:
+
+```bash
+NODE_DEBUG="jmx" node [...]
+```
+
+
 ## License and Author
 
 |                      |                                          |
