@@ -1,5 +1,5 @@
-var Client = require('./lib/client'),
-    assert = require('assert');
+var Client = require("./lib/client"),
+    assert = require("assert");
 
 module.exports = {
   createClient: createClient,
@@ -11,7 +11,7 @@ function createClient(options) {
   if (options.service) {
     var serviceOrHost = options.service;
   } else {
-    var serviceOrHost = options.host || 'localhost';
+    var serviceOrHost = options.host || "localhost";
     var protocol = options.protocol;
     assert.ok(options.port, "port is required");
     var port = options.port;
