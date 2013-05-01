@@ -3,7 +3,7 @@ var Client = require("./lib/client"),
 
 module.exports = {
   createClient: createClient,
-  Client: Client
+  Client: Client,
 };
 
 function createClient(options) { 
