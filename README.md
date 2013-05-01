@@ -1,6 +1,6 @@
 # node-jmx
 
-node.js library to communicate with java applications through JMX.
+node.js bridge library to communicate with java applications through JMX.
 
 ## Usage
 

@@ -1,7 +1,7 @@
 {
   "name": "jmx",
   "version": "0.0.0",
-  "description": "node.js library to communicate with java applications through JMX.",
+  "description": "node.js bridge library to communicate with java applications through JMX.",
   "main": "index.js",
   "scripts": {
     "test": "nodeunit test"
@@ -13,7 +13,8 @@
   "keywords": [
     "jmx",
     "java",
-    "jvm"
+    "jvm",
+    "bridge"
   ],
   "author": {
     "name": "Xabier de Zuazo",
