@@ -30,11 +30,11 @@ describe("Client", function() {
 
     it("#connect", function(done) {
       client.javaJmx.connect = function(jmxServiceUrl, undef) {
-        assert.deepEqual(
+        assert.strictEqual(
           jmxServiceUrl.getClassSync().getNameSync(),
           "javax.management.remote.JMXServiceURL"
         );
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.connect();
@@ -42,10 +42,10 @@ describe("Client", function() {
 
     it("#getAttribute", function(done) {
       client.javaJmx.getAttribute = function(mbean, attribute, callback, undef) {
-        assert.deepEqual(mbean, "mbean");
-        assert.deepEqual(attribute, "attribute");
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(mbean, "mbean");
+        assert.strictEqual(attribute, "attribute");
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.getAttribute("mbean", "attribute", "callback", "defined");
@@ -53,8 +53,8 @@ describe("Client", function() {
 
     it("#getDefaultDomain", function(done) {
       client.javaJmx.getDefaultDomain = function(callback, undef) {
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.getDefaultDomain("callback", "defined");
@@ -62,8 +62,8 @@ describe("Client", function() {
 
     it("#getDomains", function(done) {
       client.javaJmx.getDomains = function(callback, undef) {
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.getDomains("callback", "defined");
@@ -71,8 +71,8 @@ describe("Client", function() {
 
     it("#getMBeanCount", function(done) {
       client.javaJmx.getMBeanCount = function(callback, undef) {
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.getMBeanCount("callback", "defined");
@@ -80,11 +80,11 @@ describe("Client", function() {
 
     it("#setAttribute", function(done) {
       client.javaJmx.setAttribute = function(mbean, attribute, value, callback, undef) {
-        assert.deepEqual(mbean, "mbean");
-        assert.deepEqual(attribute, "attribute");
-        assert.deepEqual(value, "value");
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(mbean, "mbean");
+        assert.strictEqual(attribute, "attribute");
+        assert.strictEqual(value, "value");
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.setAttribute("mbean", "attribute", "value", "callback", "defined");
@@ -92,12 +92,12 @@ describe("Client", function() {
 
     it("#invoke", function(done) {
       client.javaJmx.invoke = function(mbean, methodName, params, signatureOrCallback, callback, undef) {
-        assert.deepEqual(mbean, "mbean");
-        assert.deepEqual(methodName, "methodName");
-        assert.deepEqual(params, "params");
-        assert.deepEqual(signatureOrCallback, "signatureOrCallback");
-        assert.deepEqual(callback, "callback");
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(mbean, "mbean");
+        assert.strictEqual(methodName, "methodName");
+        assert.strictEqual(params, "params");
+        assert.strictEqual(signatureOrCallback, "signatureOrCallback");
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.invoke("mbean", "methodName", "params", "signatureOrCallback", "callback", "defined");
@@ -105,7 +105,7 @@ describe("Client", function() {
 
     it("#disconnect", function(done) {
       client.javaJmx.disconnect = function(undef) {
-        assert.deepEqual(undef, undefined);
+        assert.strictEqual(undef, undefined);
         done();
       }
       client.disconnect("defined");

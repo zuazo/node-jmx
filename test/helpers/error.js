@@ -30,7 +30,7 @@ describe("error", function() {
       console.log = _console_log;
       console.error = _console_error;
 
-      assert.deepEqual(count, 0);
+      assert.strictEqual(count, 0);
     });
 
     it("should print to console when debug is enabled", function() {
@@ -56,8 +56,8 @@ describe("error", function() {
       console.log = _console_log;
       console.error = _console_error;
 
-      assert.deepEqual(log_count, 0, "console.log() should not be called");
-      assert.deepEqual(error_count, 1, "console.error() called more than once");
+      assert.strictEqual(log_count, 0, "console.log() should not be called");
+      assert.strictEqual(error_count, 1, "console.error() called more than once");
     });
 
   });
@@ -67,7 +67,7 @@ describe("error", function() {
     describe("when no object is passed as argument", function() {
 
       it("should return false when there is no error", function() {
-        assert.deepEqual(checkError(undefined, undefined), false);
+        assert.strictEqual(checkError(undefined, undefined), false);
       });
 
       it("should throw an exception when there is an error", function() {
@@ -94,20 +94,20 @@ describe("error", function() {
 
       it("should emit no error when there is no error", function() {
         checkError(undefined, obj);
-        assert.deepEqual(emitCount, 0);
+        assert.strictEqual(emitCount, 0);
       });
 
       it("should emit an error when there is an error", function() {
         checkError("One important error", obj);
-        assert.deepEqual(emitCount, 1);
+        assert.strictEqual(emitCount, 1);
       });
 
       it("should return false when there is no error", function() {
-        assert.deepEqual(checkError(undefined, obj), false);
+        assert.strictEqual(checkError(undefined, obj), false);
       });
 
       it("should return true when there is an error", function() {
-        assert.deepEqual(checkError("One important error", obj), true);
+        assert.strictEqual(checkError("One important error", obj), true);
       });
 
     });
