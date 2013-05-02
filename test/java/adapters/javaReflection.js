@@ -3,7 +3,7 @@ var assert = require("assert"),
     java = require("java"),
     JavaReflection = require("./../../../lib/java/adapters/javaReflection");
 
-describe.only("JavaReflection", function() {
+describe("JavaReflection", function() {
   var javaReflection;
   beforeEach(function() {
     javaReflection = new JavaReflection();
