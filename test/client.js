@@ -4,6 +4,7 @@ var assert = require("assert"),
 describe("Client", function() {
 
   describe("#Client", function() {
+
     it("should return a Client object passing the correct arguments", function() {
       var client = new Client("localhost", 3000);
       assert(client instanceof Client, "object");
