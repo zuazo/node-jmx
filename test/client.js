@@ -7,7 +7,7 @@ describe("Client", function() {
 
     it("should return a Client object passing the correct arguments", function() {
       var client = new Client("localhost", 3000);
-      assert(client instanceof Client, "object");
+      assert.ok(client instanceof Client);
     });
 
     it("should throw the correct exception when no argument is passed", function() {
@@ -18,6 +18,31 @@ describe("Client", function() {
         "JmxServiceUrlBuilder(): first argument, serviceOrHost, should be a string"
       );
     });
+
+    describe("should subscribe to JavaJmx events", function() {
+      var client;
+      var emitted;
+      beforeEach(function() {
+        client = new Client("localhost", 3000);
+        emitted = [];
+        client.emit = function(ev) {
+          emitted.push(ev);
+        }
+      });
+
+      [
+        "connect",
+        "disconnect",
+        "error",
+      ].forEach(function (ev) {
+        it(ev + " event", function() {
+          client.javaJmx.emit(ev);
+          assert.deepEqual(emitted, [ ev ]);
+        });
+      });
+
+    });
+
   });
 
   describe("Methods that should call javaJmx directly and with the correct arguments", function() {
