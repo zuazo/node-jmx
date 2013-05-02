@@ -4,7 +4,7 @@
   "description": "node.js bridge library to communicate with java applications through JMX.",
   "main": "index.js",
   "scripts": {
-    "test": "nodeunit test"
+    "test": "mocha --reporter spec --recursive"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,6 @@
     "java": "0.2.3"
   },
   "devDependencies": {
-    "nodeunit": "~0.8.0"
+    "mocha": "~1.9.0"
   }
 }
