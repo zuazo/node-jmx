@@ -10,6 +10,7 @@ describe("conversions", function() {
 
       // js objects
       [ "some string", "java.lang.String" ],
+      [ false,         "boolean"          ],
       [ 1,             "int"              ],
       [ -2147483648,   "int"              ],
       [ -2147483649,   "double"           ],
@@ -19,12 +20,13 @@ describe("conversions", function() {
 
       // java objects
       [ java.newInstanceSync("java.lang.String", "other string"), "java.lang.String" ],
-      [ java.newInstanceSync("java.lang.Integer", "2"),           "int" ],
-      [ java.newInstanceSync("java.lang.Long",    "2"),           "long" ],
-      [ java.newInstanceSync("java.lang.Float",   "2"),           "int" ],
-      [ java.newInstanceSync("java.lang.Float",   "1.5"),         "double" ],
-      [ java.newInstanceSync("java.lang.Double",  "2"),           "int" ],
-      [ java.newInstanceSync("java.lang.Double",  "1.5"),         "double" ],
+      [ java.newInstanceSync("java.lang.Boolean", "false"),       "boolean"          ],
+      [ java.newInstanceSync("java.lang.Integer", "2"),           "int"              ],
+      [ java.newInstanceSync("java.lang.Long",    "2"),           "long"             ],
+      [ java.newInstanceSync("java.lang.Float",   "2"),           "int"              ],
+      [ java.newInstanceSync("java.lang.Float",   "1.5"),         "double"           ],
+      [ java.newInstanceSync("java.lang.Double",  "2"),           "int"              ],
+      [ java.newInstanceSync("java.lang.Double",  "1.5"),         "double"           ],
       [ java.newInstanceSync("javax.management.Attribute",  "name", "value"), "javax.management.Attribute" ],
 
     ].forEach(function(value) {
