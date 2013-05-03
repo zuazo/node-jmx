@@ -1,7 +1,7 @@
 var Client = require("./lib/client"),
     assert = require("assert");
 
-function createClient(options) { 
+function createClient(options) {
   var serviceOrHost, port, protocol, urlPath;
   assert.ok(options, "options is required");
   if (options.service) {
