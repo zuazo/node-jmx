@@ -1,4 +1,3 @@
-
 var assert = require("assert"),
     java = require("java"),
     JavaReflection = require("./../../../lib/java/adapters/javaReflection");
