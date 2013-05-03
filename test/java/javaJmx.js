@@ -10,7 +10,7 @@ describe("JavaJmx", function() {
     javaJmx.mbeanServerConnection.queryMBeans = function(objName, queryObject, callback) {
       var instance = java.newInstanceSync("javax.management.ObjectInstance", "MBean1:type=MBean1", "java.lang.Object");
       callback(instance);
-    }
+    };
   });
 
   describe("#JavaJmx", function() {
@@ -29,7 +29,7 @@ describe("JavaJmx", function() {
         emitted = [];
         javaJmx.emit = function(ev) {
           emitted.push(ev);
-        }
+        };
       });
 
       it("connect event", function() {
@@ -66,7 +66,7 @@ describe("JavaJmx", function() {
       assert.strictEqual(jmxServiceUrl, "jmxServiceUrl");
       assert.strictEqual(undef, undefined);
       done();
-    }
+    };
     javaJmx.connect("jmxServiceUrl");
   });
 
@@ -74,7 +74,7 @@ describe("JavaJmx", function() {
     javaJmx.mbeanServerConnection.close = function(undef) {
       assert.strictEqual(undef, undefined);
       done();
-    }
+    };
     javaJmx.disconnect();
   });
 
@@ -85,7 +85,7 @@ describe("JavaJmx", function() {
       assert.strictEqual(typeof callback, "function");
       assert.strictEqual(undef, undefined);
       callback();
-    }
+    };
     javaJmx.getAttribute("mbean", "attributeName", function() {
       done();
     });
@@ -95,7 +95,7 @@ describe("JavaJmx", function() {
     javaJmx.mbeanServerConnection.getDefaultDomain = function(undef) {
       assert.strictEqual(undef, undefined);
       done();
-    }
+    };
     javaJmx.getDefaultDomain();
   });
 
@@ -103,7 +103,7 @@ describe("JavaJmx", function() {
     javaJmx.mbeanServerConnection.getDomains = function(undef) {
       assert.strictEqual(undef, undefined);
       done();
-    }
+    };
     javaJmx.getDomains();
   });
 
@@ -111,7 +111,7 @@ describe("JavaJmx", function() {
     javaJmx.mbeanServerConnection.getMBeanCount = function(undef) {
       assert.strictEqual(undef, undefined);
       done();
-    }
+    };
     javaJmx.getMBeanCount();
   });
 
@@ -124,7 +124,7 @@ describe("JavaJmx", function() {
       assert.strictEqual(typeof callback, "function");
       assert.strictEqual(undef, undefined);
       callback();
-    }
+    };
     javaJmx.setAttribute("mbean", "attributeName", "value", function() {
       done();
     });
@@ -141,7 +141,7 @@ describe("JavaJmx", function() {
         assert.strictEqual(typeof callback, "function");
         assert.strictEqual(undef, undefined);
         callback();
-      }
+      };
       javaJmx.invoke("mbean", "methodName", [ "param1" ], function() {
         done();
       });
@@ -156,7 +156,7 @@ describe("JavaJmx", function() {
         assert.strictEqual(typeof callback, "function");
         assert.strictEqual(undef, undefined);
         callback();
-      }
+      };
       javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "class1" ], function() {
         done();
       });

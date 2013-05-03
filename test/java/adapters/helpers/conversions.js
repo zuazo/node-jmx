@@ -27,7 +27,7 @@ describe("conversions", function() {
       [ java.newInstanceSync("java.lang.Float",   "1.5"),         "double"           ],
       [ java.newInstanceSync("java.lang.Double",  "2"),           "int"              ],
       [ java.newInstanceSync("java.lang.Double",  "1.5"),         "double"           ],
-      [ java.newInstanceSync("javax.management.Attribute",  "name", "value"), "javax.management.Attribute" ],
+      [ java.newInstanceSync("javax.management.Attribute",  "name", "value"), "javax.management.Attribute" ]
 
     ].forEach(function(value) {
       var param = value[0];

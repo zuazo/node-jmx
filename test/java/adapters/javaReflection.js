@@ -50,7 +50,7 @@ describe("JavaReflection", function() {
         if (ev === "error" && data.toString().match(/java\.lang\.NoSuchMethodException/)) {
           done();
         }
-      }
+      };
       javaReflection.invokeMethod(obj1, methodName, paramsClass, params, function() {
         assert(false, "no exception thrown");
       });

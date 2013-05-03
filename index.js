@@ -2,21 +2,22 @@ var Client = require("./lib/client"),
     assert = require("assert");
 
 function createClient(options) { 
+  var serviceOrHost, port, protocol, urlPath;
   assert.ok(options, "options is required");
   if (options.service) {
-    var serviceOrHost = options.service;
+    serviceOrHost = options.service;
   } else {
-    var serviceOrHost = options.host || "localhost";
-    var protocol = options.protocol;
+    serviceOrHost = options.host || "localhost";
+    protocol = options.protocol;
     assert.ok(options.port, "port is required");
-    var port = options.port;
-    var urlPath = options.urlPath;
+    port = options.port;
+    urlPath = options.urlPath;
   }
   return new Client(serviceOrHost, port, protocol, urlPath);
 }
 
 module.exports = {
   createClient: createClient,
-  Client: Client,
+  Client: Client
 };
 

@@ -11,10 +11,10 @@ describe("MBeanServerConnection", function() {
       getMBeanServerConnection: function(callback) {
         callback(undefined, {});
       }
-    }
+    };
     mbeanServerConnection.JMXConnectorFactory.connect = function(jmxServiceUrl, map, callback) {
       callback(undefined, jmxConnector);
-    }
+    };
   });
 
   describe("#MBeanServerConnection", function() {
@@ -23,7 +23,7 @@ describe("MBeanServerConnection", function() {
       emitted = [];
       mbeanServerConnection.emit = function(ev) {
         emitted.push(ev);
-      }
+      };
     });
 
     it("should receive URI as argument", function() {
@@ -45,7 +45,7 @@ describe("MBeanServerConnection", function() {
         if (ev === "connect") {
           done();
         }
-      }
+      };
       mbeanServerConnection.connect();
     });
 
@@ -62,13 +62,13 @@ describe("MBeanServerConnection", function() {
         close: function(callback) {
           callback(undefined, {});
         }
-      }
+      };
     });
 
     it("should try to close de connection when called", function(done) {
       mbeanServerConnection.jmxConnector.close = function() {
         done();
-      }
+      };
       mbeanServerConnection.close();
     });
 
@@ -77,7 +77,7 @@ describe("MBeanServerConnection", function() {
         if (ev === "disconnect") {
           done();
         }
-      }
+      };
       mbeanServerConnection.close();
     });
 
@@ -88,7 +88,7 @@ describe("MBeanServerConnection", function() {
       if (ev === "connect") {
         onConnected();
       }
-    }
+    };
     mbeanServerConnection.connect();
   }
 
@@ -102,7 +102,7 @@ describe("MBeanServerConnection", function() {
           }
         };
         callback(undefined, instances);
-      }
+      };
       mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance) {
         assert.strictEqual(instance.getObjectNameSync().toStringSync(), "MBean1:type=MBean1");
         done();
@@ -116,7 +116,7 @@ describe("MBeanServerConnection", function() {
       assert.strictEqual(obj, mbeanServerConnection.mbeanServerConnection);
       assert.strictEqual(method, method2);
       callback.apply(mbeanServerConnection, arguments);
-    }
+    };
     mbeanServerConnection[method].apply(mbeanServerConnection, methodParams);
   }
 
@@ -129,7 +129,7 @@ describe("MBeanServerConnection", function() {
       assert.deepEqual(methodParams, methodParams2);
       done();
     });
-  })
+  });
 
   it("#getDefaultDomain", function(done) {
     var method = "getDefaultDomain";

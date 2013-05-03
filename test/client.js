@@ -13,7 +13,7 @@ describe("Client", function() {
     it("should throw the correct exception when no argument is passed", function() {
       assert.throws(
         function() {
-          new Client()
+          new Client();
         },
         "JmxServiceUrlBuilder(): first argument, serviceOrHost, should be a string"
       );
@@ -27,13 +27,13 @@ describe("Client", function() {
         emitted = [];
         client.emit = function(ev) {
           emitted.push(ev);
-        }
+        };
       });
 
       [
         "connect",
         "disconnect",
-        "error",
+        "error"
       ].forEach(function (ev) {
         it(ev + " event", function() {
           client.javaJmx.emit(ev);
@@ -51,7 +51,7 @@ describe("Client", function() {
     var method;
     beforeEach(function() {
       client = new Client("localhost", 3000);
-    })
+    });
 
     it("#connect", function(done) {
       client.javaJmx.connect = function(jmxServiceUrl, undef) {
@@ -61,7 +61,7 @@ describe("Client", function() {
         );
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.connect();
     });
 
@@ -72,7 +72,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.getAttribute("mbean", "attribute", "callback", "defined");
     });
 
@@ -81,7 +81,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.getDefaultDomain("callback", "defined");
     });
 
@@ -90,7 +90,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.getDomains("callback", "defined");
     });
 
@@ -99,7 +99,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.getMBeanCount("callback", "defined");
     });
 
@@ -111,7 +111,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.setAttribute("mbean", "attribute", "value", "callback", "defined");
     });
 
@@ -124,7 +124,7 @@ describe("Client", function() {
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.invoke("mbean", "methodName", "params", "signatureOrCallback", "callback", "defined");
     });
 
@@ -132,7 +132,7 @@ describe("Client", function() {
       client.javaJmx.disconnect = function(undef) {
         assert.strictEqual(undef, undefined);
         done();
-      }
+      };
       client.disconnect("defined");
     });
 

@@ -4,7 +4,7 @@ var assert = require("assert"),
 describe("error", function() {
 
   function require_debug_reload() {
-    delete require.cache[require.resolve('./../../lib/helpers/error')]
+    delete require.cache[require.resolve('./../../lib/helpers/error')];
     return require("./../../lib/helpers/error").debug;
   }
 
@@ -19,11 +19,11 @@ describe("error", function() {
       console.log = function() {
         count++;
         _console_log.apply(console, arguments);
-      }
+      };
       console.error = function() {
         count++;
         _console_error.apply(console, arguments);
-      }
+      };
 
       debug("this should not be printed");
 
@@ -45,11 +45,11 @@ describe("error", function() {
       console.log = function() {
         log_count++;
         _console_log.apply(console, arguments);
-      }
+      };
       console.error = function() {
         error_count++;
         // _console_error.apply(console, arguments);
-      }
+      };
 
       debug("this should be printed");
 
@@ -73,7 +73,7 @@ describe("error", function() {
       it("should throw an exception when there is an error", function() {
         assert.throws(
           function() {
-            checkError("One important error", undefined)
+            checkError("One important error", undefined);
           },
           "One important error"
         );
