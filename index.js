@@ -17,7 +17,6 @@ function createClient(options) {
 }
 
 module.exports = {
-  createClient: createClient,
-  Client: Client
+  createClient: createClient
 };
 
