@@ -4,7 +4,7 @@ var assert = require("assert"),
 
 var jmxPort = 63120;
 
-describe.only("Integration tests", function() {
+describe("Integration tests", function() {
   this.timeout(5000);
 
   it("should run java JMX test app", function(done) {
