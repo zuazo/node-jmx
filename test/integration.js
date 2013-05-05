@@ -1,4 +1,5 @@
 var assert = require("assert"),
+    chmod = require("fs").chmod,
     jmx = require("./../index.js"),
     StartJmxApp = require("./integration/startJmxApp.js");
 
@@ -6,9 +7,17 @@ var jmxPort = 63120;
 
 describe("Integration tests", function() {
   this.timeout(5000);
+  before(function(done) {
+    chmod(__dirname + "/integration/jmxremote.password", 0400, function(err) {
+      if (err) {
+        console.error(err);
+      }
+      done();
+    });
+  });
 
   it("should run java JMX test app", function(done) {
-    var jmxApp = new StartJmxApp(jmxPort, function() {
+    var jmxApp = new StartJmxApp(jmxPort, null, function() {
       jmxApp.stop(function() {
         done();
       });
@@ -18,7 +27,7 @@ describe("Integration tests", function() {
   describe("client", function() {
     var jmxApp;
     before(function(done) {
-      jmxApp = new StartJmxApp(jmxPort, function() {
+      jmxApp = new StartJmxApp(jmxPort, null, function() {
         done();
       });
     });
@@ -120,6 +129,62 @@ describe("Integration tests", function() {
         });
       });
 
+    });
+
+  });
+
+  it("should run java JMX test app with authentication enabled", function(done) {
+    var jmxApp = new StartJmxApp(jmxPort, "jmxremote.password", function() {
+      jmxApp.stop(function() {
+        done();
+      });
+    });
+  });
+
+  describe("starting a server with authentication", function() {
+    var jmxApp;
+    before(function(done) {
+      jmxApp = new StartJmxApp(jmxPort, "jmxremote.password", function() {
+        done();
+      });
+    });
+    after(function(done) {
+      jmxApp.stop(function() {
+        done();
+      });
+    });
+
+    it("should not connect succefully without credentials", function(done) {
+      client = jmx.createClient({
+        host: '127.0.0.1',
+        port: jmxPort
+      });
+      client.emit = function(ev, data) {
+        if (ev === "error") {
+          if (/java\.lang\.SecurityException/.test(data)) {
+            done();
+          } else {
+            console.error(data);
+          }
+        }
+      };
+      client.connect();
+      client.on("connect", function() {
+        assert(false, "connect");
+      });
+    });
+
+    it("should connect succefully with the correct credentials", function(done) {
+      client = jmx.createClient({
+        host: '127.0.0.1',
+        port: jmxPort,
+        username: "controlRole",
+        password: "testPassword"
+      });
+      client.connect();
+      client.on("connect", function() {
+        done();
+      });
     });
 
   });

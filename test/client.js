@@ -19,6 +19,12 @@ describe("Client", function() {
       );
     });
 
+    it("should accept username and password as arguments", function() {
+      var client = new Client("localhost", 3000, undefined, undefined, "username", "password");
+      assert.strictEqual(client.username, "username");
+      assert.strictEqual(client.password, "password");
+    });
+
     describe("should subscribe to JavaJmx events", function() {
       var client;
       var emitted;

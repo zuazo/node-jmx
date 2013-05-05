@@ -4,11 +4,10 @@ var jmxAppName = "JmxAppExample",
     jmxPort = 3000,
     jmxEnableArgs = [
       "-Dcom.sun.management.jmxremote",
-      "-Dcom.sun.management.jmxremote.ssl=false",
-      "-Dcom.sun.management.jmxremote.authenticate=false"
+      "-Dcom.sun.management.jmxremote.ssl=false"
     ];
 
-function StartJmxApp(port, done) {
+function StartJmxApp(port, password_file, done) {
   var self = this;
 
   function onData(data) {
@@ -25,6 +24,12 @@ function StartJmxApp(port, done) {
 
   var args = jmxEnableArgs.slice();
   args.push("-Dcom.sun.management.jmxremote.port=" + port);
+  if (password_file) {
+    args.push("-Dcom.sun.management.jmxremote.password.file=" + password_file);
+    args.push("-Dcom.sun.management.jmxremote.authenticate=true");
+  } else {
+    args.push("-Dcom.sun.management.jmxremote.authenticate=false");
+  }
   args.push(jmxAppName);
   this.jmxApp = spawn("java", args, {
     cwd: __dirname,

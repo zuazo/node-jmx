@@ -67,6 +67,8 @@ Returns a `Client` object.
 * `port` - JMX port number to connect to.
 * `protocol` - Protocol to use (defaults to `"rmi"`).
 * `urlPath` - JMX URL Path (defaults to `"/jndi/{protocol}://{host}:{port}/jmx{protocol}"`).
+* `username` - JMX authentication username.
+* `password` - JMX authentication password.
 
 ### Client.connect()
 

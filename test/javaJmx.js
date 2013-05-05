@@ -130,6 +130,16 @@ describe("JavaJmx", function() {
     });
   });
 
+  it("#setCredentials", function(done) {
+    javaJmx.mbeanServerConnection.setCredentials = function(username, password, undef) {
+      assert.strictEqual(username, "username");
+      assert.strictEqual(password, "password");
+      assert.strictEqual(undef, undefined);
+      done();
+    };
+    javaJmx.setCredentials("username", "password");
+  });
+
   describe("#invoke", function() {
 
     it ("should accept a callback as the fourth parameter", function(done) {

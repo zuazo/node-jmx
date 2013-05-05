@@ -54,6 +54,18 @@ describe("MBeanServerConnection", function() {
       assert.strictEqual(mbeanServerConnection.jmxServiceUrl, "uri2");
     });
 
+    it("should generate authentication credentials when required", function(done) {
+      mbeanServerConnection.username = "username1";
+      mbeanServerConnection.password = "password2";
+      mbeanServerConnection.JMXConnectorFactory.connect = function(jmxServiceUrl, map, callback) {
+        var credentials = map.getSync("jmx.remote.credentials");
+        assert.strictEqual(credentials[0], "username1");
+        assert.strictEqual(credentials[1], "password2");
+        done();
+      };
+      mbeanServerConnection.connect("uri2");
+    });
+
   });
 
   describe("#disconnect", function() {
