@@ -1,6 +1,6 @@
 var assert = require("assert"),
     java = require("java"),
-    MBeanServerConnection = require("./../../../lib/java/adapters/mbeanServerConnection");
+    MBeanServerConnection = require("./../../lib/adapters/mbeanServerConnection");
 
 describe("MBeanServerConnection", function() {
   var mbeanServerConnection;

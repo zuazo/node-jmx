@@ -1,7 +1,7 @@
 var assert = require("assert"),
     java = require("java"),
-    JavaJmx = require("./../../lib/java/javaJmx.js"),
-    MBeanServerConnection = require("./../../lib/java/adapters/mbeanServerConnection.js");
+    JavaJmx = require("./../lib/javaJmx.js"),
+    MBeanServerConnection = require("./../lib/adapters/mbeanServerConnection.js");
 
 describe("JavaJmx", function() {
   var javaJmx;

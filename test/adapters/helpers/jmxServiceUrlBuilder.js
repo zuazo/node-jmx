@@ -1,6 +1,6 @@
 var assert = require("assert"),
     java = require("java"),
-    JmxServiceUrlBuilder = require("./../../../../lib/java/adapters/helpers/jmxServiceUrlBuilder");
+    JmxServiceUrlBuilder = require("./../../../lib/adapters/helpers/jmxServiceUrlBuilder");
 
 describe("JmxServiceUrlBuilder", function() {
 

@@ -1,6 +1,6 @@
 var assert = require("assert"),
     java = require("java"),
-    conversions = require("./../../../../lib/java/adapters/helpers/conversions");
+    conversions = require("./../../../lib/adapters/helpers/conversions");
 
 describe("conversions", function() {
 
