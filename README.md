@@ -2,9 +2,20 @@
 
 node.js bridge library to communicate with java applications through JMX.
 
-## Usage
+## Requirements:
 
-### Examples
+* `node-java`: See [its installation instructions](https://github.com/nearinfinity/node-java/blob/master/README.md#installation-linuxwindows).
+
+## Installation
+
+Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JRE installation directory.
+
+```bash
+$ export JAVA_HOME=/usr/local/share/jdk[...]
+$ npm install jmx
+```
+
+## Usage examples
 
 ```js
 var jmx = require("jmx");
@@ -16,27 +27,111 @@ client = jmx.createClient({
 
 client.connect();
 client.on("connect", function() {
+
   client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
-    console.log(data.toString());
+    var used = data.getSync('used');
+    console.log("HeapMemoryUsage used: " + used.longValue);
+    // console.log(data.toString());
   });
 
-  client.setAttribute("java.lang:type=Memory", "Verbose", true, function(data) {
+  client.setAttribute("java.lang:type=Memory", "Verbose", true, function() {
     console.log("Memory verbose on"); // callback is optional
   });
 
   client.invoke("java.lang:type=Memory", "gc", [], function(data) {
     console.log("gc() done");
   });
+
 });
 ```
 
 ```js
 client = jmx.createClient({
-  service: "service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi",
+  service: "service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi"
 });
 ```
+You can check the [node-java documentation](https://github.com/nearinfinity/node-java/blob/master/README.md#quick-examples) to learn how to work with java objects in node.js.
 
-### Error handling
+## Documentation
+
+### jmx.createClient(options)
+
+Returns a `Client` object.
+
+#### options
+
+`options` is a hash table with the following values:
+
+* `service` - The full service URL string, with *host*, *port*, *protocol* and *urlPath* included. For example `"service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi"`.
+* `host` - Hostname to connect to (defaults to `"localhost"`).
+* `port` - JMX port number to connect to.
+* `protocol` - Protocol to use (defaults to `"rmi"`).
+* `urlPath` - JMX URL Path (defaults to `"/jndi/{protocol}://{host}:{port}/jmx{protocol}"`).
+
+### Client.connect()
+
+Connects to the JMX server. Emits `connect` event when done.
+
+### Client.disconnect()
+
+Disconnects from the JMX server. Emits `disconnect` event when done.
+
+### Client.getAttribute(mbean, attribute, callback)
+
+Returns an attribute from a MBean.
+
+* `mbean` - MBean query address as string. For example "java.lang:type=Memory".
+* `attribute` - Attribute name as string.
+* `callback(attrValue)`
+
+### Client.getDefaultDomain(callback)
+
+Returns the default domain as string.
+
+* `callback(domainName)`
+
+### Client.getDomains(callback)
+
+Returns an array of domain names.
+
+* `callback(domainsArray)`
+
+### Client.getMBeanCount(callback)
+
+Returns total the number of MBeans.
+
+* `callback(mbeanCount)`
+
+### Client.invoke(mbean, methodName, params, [signature,] callback)
+
+Invokes a MBean operation.
+
+* `mbean` - The MBean query address as string. For example `"java.lang:type=Memory"`.
+* `methodName` - The method name as string.
+* `params` - The parameters to pass to the operation as array. For example `[ 1, 5, "param3" ]`.
+* `signature` (optional) - An array with the signature of the *params*. Sometimes may be necessary to use this if class names are not correctly detected (gives a *NoSuchMethodException*). For example `[ "int", "java.lang.Integer", "java.lang.String" ]`.
+* `callback(returnedValue)`
+
+### Client.on(event, callback)
+
+Adds a listener for the especified event.
+
+#### events
+
+* `connect`
+* `disconnect`
+* `error` - Passes the error as first parameter to the callback function.
+
+### Client.setAttribute(mbean, attribute, value, callback)
+
+Changes an attribute value of the MBean.
+
+* `mbean` - The MBean query address as string. For example `"java.lang:type=Memory"`.
+* `attribute` - The attribute name as string.
+* `value` - The attribute value.
+* `callback()` (optional)
+
+## Error handling
 
 Errors are **not printed** to the console by default. You can catch them with something like the following:
 
@@ -44,6 +139,12 @@ Errors are **not printed** to the console by default. You can catch them with so
 client.on("error", function(err) {
   // ...
 });
+```
+
+## Testing
+
+```bash
+npm test
 ```
 
 ## Debugging
