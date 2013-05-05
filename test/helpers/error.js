@@ -4,7 +4,7 @@ var assert = require("assert"),
 describe("error", function() {
 
   function require_debug_reload() {
-    delete require.cache[require.resolve('./../../lib/helpers/error')];
+    delete require.cache[require.resolve("./../../lib/helpers/error")];
     return require("./../../lib/helpers/error").debug;
   }
 
@@ -35,7 +35,7 @@ describe("error", function() {
 
     it("should print to console when debug is enabled", function() {
       var old_node_debug = process.env.NODE_DEBUG;
-      process.env.NODE_DEBUG = 'jmx';
+      process.env.NODE_DEBUG = "jmx";
       var debug = require_debug_reload();
       process.env.NODE_DEBUG = old_node_debug;
 

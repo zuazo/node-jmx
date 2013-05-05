@@ -53,7 +53,7 @@ describe("JavaJmx", function() {
 
   describe("#JmxServiceUrl", function() {
     it("should create a JMXServiceURL java object", function() {
-      var jmxServiceUrl = javaJmx.JmxServiceUrl('localhost', 3000);
+      var jmxServiceUrl = javaJmx.JmxServiceUrl("localhost", 3000);
       assert.strictEqual(
         jmxServiceUrl.getClassSync().getNameSync(),
         "javax.management.remote.JMXServiceURL"

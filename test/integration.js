@@ -39,7 +39,7 @@ describe("Integration tests", function() {
 
     it("should connect succefully", function(done) {
       client = jmx.createClient({
-        host: '127.0.0.1',
+        host: "127.0.0.1",
         port: jmxPort
       });
       client.connect();
@@ -51,7 +51,7 @@ describe("Integration tests", function() {
     it("should not connect when the port is wrong", function(done) {
       this.timeout(20000);
       client = jmx.createClient({
-        host: '127.0.0.1',
+        host: "127.0.0.1",
         port: jmxPort + 1
       });
       client.connect();
@@ -68,7 +68,7 @@ describe("Integration tests", function() {
       var client;
       before(function(done) {
         client = jmx.createClient({
-          host: '127.0.0.1',
+          host: "127.0.0.1",
           port: jmxPort
         });
         client.connect();
@@ -156,7 +156,7 @@ describe("Integration tests", function() {
 
     it("should not connect succefully without credentials", function(done) {
       client = jmx.createClient({
-        host: '127.0.0.1',
+        host: "127.0.0.1",
         port: jmxPort
       });
       client.emit = function(ev, data) {
@@ -176,7 +176,7 @@ describe("Integration tests", function() {
 
     it("should connect succefully with the correct credentials", function(done) {
       client = jmx.createClient({
-        host: '127.0.0.1',
+        host: "127.0.0.1",
         port: jmxPort,
         username: "controlRole",
         password: "testPassword"
