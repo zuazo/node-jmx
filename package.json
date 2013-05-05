@@ -2,6 +2,8 @@
   "name": "jmx",
   "version": "0.0.0",
   "description": "node.js bridge library to communicate with java applications through JMX.",
+  "homepage": "https://github.com/onddo/node-jmx",
+  "bugs": "https://github.com/onddo/node-jmx/issues",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --recursive"
