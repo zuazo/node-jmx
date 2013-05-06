@@ -2,6 +2,8 @@
 
 node.js bridge library to communicate with java applications through JMX.
 
+[![NPM version](https://badge.fury.io/js/jmx.png)](http://badge.fury.io/js/jmx)
+
 ## Requirements:
 
 * Java version 6 or higher.
