@@ -46,7 +46,7 @@ function StartJmxApp(port, password_file, done) {
     cwd: __dirname,
     stdio: "pipe"
   });
-  this.jmxApp.on("close", function() {
+  this.jmxApp.on("exit", function() {
     self.onClose();
     self.jmxApp = null;
   });
