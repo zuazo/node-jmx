@@ -38,7 +38,7 @@ describe("JavaJmx", function() {
       });
 
       it("disconnect event", function() {
-        javaJmx.mbeanServerConnection.emit("close");
+        javaJmx.mbeanServerConnection.emit("disconnect");
         assert.deepEqual(emitted, [ "disconnect" ]);
       });
 
@@ -86,7 +86,7 @@ describe("JavaJmx", function() {
       assert.strictEqual(undef, undefined);
       callback();
     };
-    javaJmx.getAttribute("mbean", "attributeName", function() {
+    javaJmx.getAttribute("mbean", "attributeName", function(attr) {
       done();
     });
   });
@@ -125,9 +125,7 @@ describe("JavaJmx", function() {
       assert.strictEqual(undef, undefined);
       callback();
     };
-    javaJmx.setAttribute("mbean", "attributeName", "value", function() {
-      done();
-    });
+    javaJmx.setAttribute("mbean", "attributeName", "value", done);
   });
 
   it("#setCredentials", function(done) {
@@ -152,7 +150,7 @@ describe("JavaJmx", function() {
         assert.strictEqual(undef, undefined);
         callback();
       };
-      javaJmx.invoke("mbean", "methodName", [ "param1" ], function() {
+      javaJmx.invoke("mbean", "methodName", [ "param1" ], function(value) {
         done();
       });
     });
@@ -167,7 +165,7 @@ describe("JavaJmx", function() {
         assert.strictEqual(undef, undefined);
         callback();
       };
-      javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "class1" ], function() {
+      javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "class1" ], function(value) {
         done();
       });
     });

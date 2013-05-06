@@ -36,7 +36,8 @@ function StartJmxApp(port, password_file, done) {
     stdio: "pipe"
   });
   this.jmxApp.on("close", function() {
-    self.onClose()
+    self.onClose();
+    self.jmxApp = null;
   });
   this.jmxApp.stdout.on("data", onData);
   this.jmxApp.stderr.on("data", onData);
@@ -44,8 +45,12 @@ function StartJmxApp(port, password_file, done) {
 };
 
 StartJmxApp.prototype.stop = function(callback) {
-  this.onClose = callback;
-  this.jmxApp.stdin.write("exit\n");
+  if (this.jmxApp) {
+    this.onClose = callback || new Function();
+    this.jmxApp.stdin.write("exit\n");
+  } else {
+    callback();
+  }
 }
 
 module.exports = StartJmxApp;

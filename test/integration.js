@@ -18,39 +18,41 @@ describe("Integration tests", function() {
 
   it("should run java JMX test app", function(done) {
     var jmxApp = new StartJmxApp(jmxPort, null, function() {
-      jmxApp.stop(function() {
-        done();
-      });
+      jmxApp.stop(done);
     });
   });
 
   describe("client", function() {
     var jmxApp;
     before(function(done) {
-      jmxApp = new StartJmxApp(jmxPort, null, function() {
-        done();
-      });
+      jmxApp = new StartJmxApp(jmxPort, null, done);
     });
     after(function(done) {
-      jmxApp.stop(function() {
-        done();
-      });
+      jmxApp.stop(done);
     });
 
-    it("should connect succefully", function(done) {
-      client = jmx.createClient({
+    it("should connect successfully", function(done) {
+      var client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
       });
       client.connect();
-      client.on("connect", function() {
-        done();
+      client.on("connect", done);
+    });
+
+    it("should disconnect successfully", function(done) {
+      var client = jmx.createClient({
+        host: "127.0.0.1",
+        port: jmxPort
       });
+      client.connect();
+      client.on("connect", client.disconnect);
+      client.on("disconnect", done);
     });
 
     it("should not connect when the port is wrong", function(done) {
       this.timeout(20000);
-      client = jmx.createClient({
+      var client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort + 1
       });
@@ -154,7 +156,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should not connect succefully without credentials", function(done) {
+    it("should not connect successfully without credentials", function(done) {
       client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
@@ -174,7 +176,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should connect succefully with the correct credentials", function(done) {
+    it("should connect successfully with the correct credentials", function(done) {
       client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort,
@@ -182,8 +184,38 @@ describe("Integration tests", function() {
         password: "testPassword"
       });
       client.connect();
-      client.on("connect", function() {
+      client.on("connect", done);
+    });
+
+  });
+
+  describe("starting a server that will go down", function() {
+    var jmxApp, client;
+    beforeEach(function(done) {
+      jmxApp = new StartJmxApp(jmxPort, null, function() {
+        client = jmx.createClient({
+          host: "127.0.0.1",
+          port: jmxPort
+        });
+        client.on("error", new Function()); // ignore errors
+        client.connect();
         done();
+      });
+    });
+    afterEach(function(done) {
+      jmxApp.stop(function() {
+        done();
+      });
+    });
+
+    it("should emit disconnect event", function(done) {
+      client.on("connect", function() {
+        client.getMBeanCount(function(count) {
+          client.on("disconnect", done);
+          jmxApp.stop(function() {
+            client.getMBeanCount(new Function());
+          });
+        });
       });
     });
 

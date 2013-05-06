@@ -24,7 +24,7 @@ describe("JavaReflection", function() {
       var params = [];
       var methodName = "getName";
 
-      testInvokeMethod(obj, methodName, paramsClass, params, function() {
+      testInvokeMethod(obj, methodName, paramsClass, params, function(value) {
         done();
       });
     });
@@ -36,7 +36,7 @@ describe("JavaReflection", function() {
       var params = [ obj2 ];
       var methodName = "equals";
 
-      testInvokeMethod(obj1, methodName, paramsClass, params, function() {
+      testInvokeMethod(obj1, methodName, paramsClass, params, function(value) {
         done();
       });
     });
