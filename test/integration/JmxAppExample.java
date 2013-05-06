@@ -13,29 +13,40 @@ public class JmxAppExample implements JmxAppExampleMBean {
 
     /* MBean interface */
 
-    private String stringMethod = "LongObject";
+    private String stringAttr = "LongObject";
+    private long longAttr = 5;
+    private Long longObjAttr = new Long(27);
 
     /* attributes */
     public synchronized String getStringAttr() {
-        return stringMethod;
+        return stringAttr;
     }
 
-    public synchronized void setStringAttr(String str) {
-        stringMethod = str;
+    public synchronized void setStringAttr(String stringAttr) {
+        this.stringAttr = stringAttr;
     }
+
     public synchronized long getLongAttr() {
-        long l = 5;
-        return l;
+        return longAttr;
     }
-    public synchronized java.lang.Long getLongObjAttr() {
-        return new Long(27);
+
+    public synchronized void setLongAttr(long longAttr) {
+        this.longAttr = longAttr;
+    }
+
+    public synchronized Long getLongObjAttr() {
+        return longObjAttr;
+    }
+
+    public synchronized void setLongObjAttr(Long longObjAttr) {
+        this.longObjAttr = longObjAttr;
     }
 
     /* operations */
     public synchronized void callVoidMethod() {
     }
 
-    public synchronized void callVoidWithSimpleArgs(String str, long num) {
+    public synchronized void callVoidWithSimpleArgs(String str) {
     }
 
     public synchronized long callLongWithSimpleArgs() {

@@ -110,15 +110,16 @@ describe("Client", function() {
     });
 
     it("#setAttribute", function(done) {
-      client.javaJmx.setAttribute = function(mbean, attribute, value, callback, undef) {
+      client.javaJmx.setAttribute = function(mbean, attribute, value, className, callback, undef) {
         assert.strictEqual(mbean, "mbean");
         assert.strictEqual(attribute, "attribute");
         assert.strictEqual(value, "value");
+        assert.strictEqual(className, "className");
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
       };
-      client.setAttribute("mbean", "attribute", "value", "callback", "defined");
+      client.setAttribute("mbean", "attribute", "value", "className", "callback", "defined");
     });
 
     it("#invoke", function(done) {

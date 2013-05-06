@@ -160,12 +160,12 @@ describe("JavaJmx", function() {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
         assert.deepEqual(params, [ "param1" ]);
-        assert.deepEqual(signature, [ "class1" ]);
+        assert.deepEqual(signature, [ "int" ]);
         assert.strictEqual(typeof callback, "function");
         assert.strictEqual(undef, undefined);
         callback();
       };
-      javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "class1" ], function(value) {
+      javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "int" ], function(value) {
         done();
       });
     });

@@ -87,7 +87,7 @@ describe("Integration tests", function() {
 
       it("#getAttribute", function(done) {
         client.getAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", function(value) {
-          assert.ok(typeof value === "object" && value.longValue === "5");
+          assert.ok(typeof value === "object" && typeof value.longValue === "string");
           done();
         });
       });
@@ -113,27 +113,81 @@ describe("Integration tests", function() {
         });
       });
 
-      it("#invoke", function(done) {
-        client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
-          done();
+      describe("#invoke", function() {
+
+        it("should invoke a method", function(done) {
+          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
+            done();
+          });
         });
+
+        it("should invoke a method with simple args", function(done) {
+          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithSimpleArgs", [ "hello" ], function(data) {
+            done();
+          });
+        });
+
+        it("should invoke a method with complex args using className", function(done) {
+          var values = [ 1, 5, 22];
+          var classNames = [ "long", "int", "java.lang.Long" ];
+          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithMixedArguments", values, classNames, function(data) {
+            done();
+          });
+        });
+
+        it("should return long values correctly", function(done) {
+          client.invoke("com.onddo.test:type=JmxAppExample", "callLongWithSimpleArgs", [], function(data) {
+            assert.ok(typeof data.longValue === "string");
+            done();
+          });
+        });
+
+        it("should return java.lang.Long values correctly", function(done) {
+          client.invoke("com.onddo.test:type=JmxAppExample", "callLongObjWithSimpleArgs", [], function(data) {
+            assert.ok(typeof data.longValue === "string");
+            done();
+          });
+        });
+
       });
 
-      it("#setAttribute", function(done) {
-        var domain = "com.onddo.test:type=JmxAppExample";
-        var attribute = "StringAttr";
-        var values = [ "begin", "end" ];
-        client.setAttribute(domain, attribute, values[0], function() {
-          client.getAttribute(domain, attribute, function(data) {
-            assert.strictEqual(data, values[0]);
-            client.setAttribute(domain, attribute, values[1], function() {
-              client.getAttribute(domain, attribute, function(data) {
-                assert.strictEqual(data, values[1]);
-                done();
+      describe("#setAttribute", function() {
+
+        it("should set a simple string value", function(done) {
+          var domain = "com.onddo.test:type=JmxAppExample";
+          var attribute = "StringAttr";
+          var values = [ "begin", "end" ];
+          client.setAttribute(domain, attribute, values[0], function() {
+            client.getAttribute(domain, attribute, function(data) {
+              assert.strictEqual(data, values[0]);
+              client.setAttribute(domain, attribute, values[1], function() {
+                client.getAttribute(domain, attribute, function(data) {
+                  assert.strictEqual(data, values[1]);
+                  done();
+                });
               });
             });
           })
         });
+
+        it("should accept String object values", function(done) {
+          client.setAttribute("com.onddo.test:type=JmxAppExample", "StringAttr", "test", "java.lang.String", function() {
+            done();
+          });
+        });
+
+        it("should set long values", function(done) {
+          client.setAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", 22, function() {
+            done();
+          });
+        });
+
+        it("should set java.lang.Long values using className", function(done) {
+          client.setAttribute("com.onddo.test:type=JmxAppExample", "LongObjAttr", 33, "java.lang.Long", function() {
+            done();
+          });
+        });
+
       });
 
     });

@@ -124,13 +124,14 @@ Adds a listener for the especified event.
 * `disconnect`
 * `error` - Passes the error as first parameter to the callback function.
 
-### Client.setAttribute(mbean, attribute, value, callback)
+### Client.setAttribute(mbean, attribute, value, [className,] callback)
 
 Changes an attribute value of the MBean.
 
 * `mbean` - The MBean query address as string. For example `"java.lang:type=Memory"`.
 * `attribute` - The attribute name as string.
 * `value` - The attribute value.
+* `className` (optional) - The attribute java className. Sometimes may be necessary to use this if value type is not correctly detected (gives a *InvalidAttributeValueException*). For example `"java.lang.Long".
 * `callback()` (optional)
 
 ## Error handling
