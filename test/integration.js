@@ -86,8 +86,8 @@ describe("Integration tests", function() {
       });
 
       it("#getAttribute", function(done) {
-        client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", function(value) {
-          assert.ok(typeof value === "object" && value.get && value.getSync);
+        client.getAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", function(value) {
+          assert.ok(typeof value === "object" && value.longValue === "5");
           done();
         });
       });
@@ -114,15 +114,15 @@ describe("Integration tests", function() {
       });
 
       it("#invoke", function(done) {
-        client.invoke("java.lang:type=Memory", "gc", [], function(data) {
+        client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
           done();
         });
       });
 
       it("#setAttribute", function(done) {
-        var domain = "java.lang:type=Memory";
-        var attribute = "Verbose";
-        var values = [ true, false ];
+        var domain = "com.onddo.test:type=JmxAppExample";
+        var attribute = "StringAttr";
+        var values = [ "begin", "end" ];
         client.setAttribute(domain, attribute, values[0], function() {
           client.getAttribute(domain, attribute, function(data) {
             assert.strictEqual(data, values[0]);

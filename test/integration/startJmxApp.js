@@ -22,9 +22,11 @@ function StartJmxApp(port, password_file, done) {
   function onData(data) {
     if (/> $/.test(data)) {
       done();
-    } else {
-      console.error(data.toString());
     }
+  }
+
+  function onDataError(data) {
+    console.error(data.toString());
   }
 
   this.onClose = function() {
@@ -49,7 +51,7 @@ function StartJmxApp(port, password_file, done) {
     self.jmxApp = null;
   });
   this.jmxApp.stdout.on("data", onData);
-  this.jmxApp.stderr.on("data", onData);
+  this.jmxApp.stderr.on("data", onDataError);
 
 };
 
