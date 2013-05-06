@@ -150,6 +150,8 @@ client.on("error", function(err) {
 npm test
 ```
 
+You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
+
 ## Debugging
 
 You can enable debugging and error printing to console using `NODE_DEBUG` environment variable:
