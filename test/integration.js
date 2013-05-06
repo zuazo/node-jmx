@@ -8,11 +8,16 @@ var jmxPort = 63120;
 describe("Integration tests", function() {
   this.timeout(5000);
   before(function(done) {
-    chmod(__dirname + "/integration/jmxremote.password", 0400, function(err) {
-      if (err) {
-        console.error(err);
-      }
-      done();
+    console.log("    Node.js version: " + process.version);
+    StartJmxApp.getJavaVersion(function(java_version) {
+      console.log("    Java version:");
+      console.log(java_version.replace(/^/mg, "        "));
+      chmod(__dirname + "/integration/jmxremote.password", 0400, function(err) {
+        if (err) {
+          console.error(err);
+        }
+        done();
+      });
     });
   });
 
