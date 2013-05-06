@@ -161,6 +161,12 @@ You can enable debugging and error printing to console using `NODE_DEBUG` enviro
 NODE_DEBUG="jmx" node [...]
 ```
 
+## History
+
+### 0.1.0
+
+* The first published version.
+
 
 ## License and Author
 
