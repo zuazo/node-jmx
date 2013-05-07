@@ -3,6 +3,6 @@ node_js:
   - "0.10"
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq default-jre
+  - sudo apt-get install -qq default-jdk g++ make
 env:
   - JAVA_HOME="/usr/lib/jvm/default-java"
