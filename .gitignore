@@ -1,2 +1,5 @@
 /node_modules
 /test/npm-debug.log
+/npm-debug.log
+*.swp
+.lock*
