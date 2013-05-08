@@ -12,10 +12,10 @@ node.js bridge library to communicate with java applications through JMX.
 
 ## Installation
 
-Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JRE installation directory.
+Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JRE installation directory. For example:
 
 ```bash
-$ export JAVA_HOME=/usr/local/share/jdk[...]
+$ export JAVA_HOME=/usr/lib/jvm/default-java
 $ npm install jmx
 ```
 
@@ -128,7 +128,7 @@ Adds a listener for the especified event.
 * `disconnect`
 * `error` - Passes the error as first parameter to the callback function.
 
-### Client.setAttribute(mbean, attribute, value, [className,] callback)
+### Client.setAttribute(mbean, attribute, value, [className,] [callback])
 
 Changes an attribute value of the MBean.
 
@@ -151,7 +151,7 @@ client.on("error", function(err) {
 ## Testing
 
 ```bash
-npm test
+$ npm test
 ```
 
 You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
@@ -161,7 +161,7 @@ You will need to set the `JAVA_HOME` environment variable if the java binary is 
 You can enable debugging and error printing to console using `NODE_DEBUG` environment variable:
 
 ```bash
-NODE_DEBUG="jmx" node [...]
+$ NODE_DEBUG="jmx" node [...]
 ```
 
 ## History
