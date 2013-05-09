@@ -1,8 +1,9 @@
 REPORTER=spec
 COV_OUTPUT=coverage.html
+COV_NODE_VER=v0.10.
 
 test:
-	test -z ${TRAVIS_JOB_ID} && $(MAKE) test-no-coveralls || $(MAKE) test-coveralls
+	node --version | grep -Fq '$(COV_NODE_VER)' && ! test -z ${TRAVIS_JOB_ID} && $(MAKE) test-coveralls || $(MAKE) test-no-coveralls
 
 lib-cov:
 	jscoverage lib lib-cov
@@ -14,6 +15,7 @@ test-cov:	lib-cov
 
 test-coveralls:	lib-cov
 	echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
+	exit 1
 	@JMX_COVERAGE=1 $(MAKE) test REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
 	rm -rf lib-cov
 
