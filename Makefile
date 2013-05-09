@@ -15,10 +15,13 @@ test-cov:	lib-cov
 
 test-coveralls:	lib-cov
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
-	@JMX_COVERAGE=1 $(MAKE) test-no-coveralls REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+	@JMX_COVERAGE=1 $(MAKE) mocha REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
 	rm -rf lib-cov
 
 test-no-coveralls:
-	@JMX_COVERAGE= NODE_ENV=test ./node_modules/.bin/mocha -b --recursive --reporter $(REPORTER)
+	@JMX_COVERAGE= $(MAKE) mocha
+
+mocha:
+	NODE_ENV=test ./node_modules/.bin/mocha -b --recursive --reporter $(REPORTER)
 
 .PHONY: test
