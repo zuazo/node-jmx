@@ -151,10 +151,18 @@ client.on("error", function(err) {
 ## Testing
 
 ```bash
-$ npm test
+$ make test
 ```
 
 You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
+
+### Coverage
+
+```bash
+$ make test-cov
+```
+
+The HTML output file will be at `./coverage.html`.
 
 ## Debugging
 

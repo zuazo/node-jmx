@@ -1,5 +1,7 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../lib-cov" : "./../lib";
+
 var assert = require("assert"),
-    Client = require("./../lib/client");
+    Client = require(libpath + "/client");
 
 describe("Client", function() {
 

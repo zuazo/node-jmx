@@ -1,6 +1,8 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../../../lib-cov" : "./../../../lib";
+
 var assert = require("assert"),
     java = require("java"),
-    JmxServiceUrlBuilder = require("./../../../lib/adapters/helpers/jmxServiceUrlBuilder");
+    JmxServiceUrlBuilder = require(libpath + "/adapters/helpers/jmxServiceUrlBuilder");
 
 describe("JmxServiceUrlBuilder", function() {
 

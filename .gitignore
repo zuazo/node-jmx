@@ -3,3 +3,16 @@
 /npm-debug.log
 *.swp
 .lock*
+lib-cov
+pids
+logs
+results
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+coverage.html

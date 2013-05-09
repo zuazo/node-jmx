@@ -1,6 +1,8 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../../lib-cov" : "./../../lib";
+
 var assert = require("assert"),
     java = require("java"),
-    MBeanServerConnection = require("./../../lib/adapters/mbeanServerConnection");
+    MBeanServerConnection = require(libpath + "/adapters/mbeanServerConnection");
 
 describe("MBeanServerConnection", function() {
   var mbeanServerConnection;

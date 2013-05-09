@@ -1,11 +1,13 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../../lib-cov" : "./../../lib";
+
 var assert = require("assert"),
-    checkError = require("./../../lib/helpers/error").checkError;
+    checkError = require(libpath + "/helpers/error").checkError;
 
 describe("error", function() {
 
   function require_debug_reload() {
-    delete require.cache[require.resolve("./../../lib/helpers/error")];
-    return require("./../../lib/helpers/error").debug;
+    delete require.cache[require.resolve(libpath + "/helpers/error")];
+    return require(libpath + "/helpers/error").debug;
   }
 
   describe("#debug", function() {

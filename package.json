@@ -6,7 +6,7 @@
   "bugs": "https://github.com/onddo/node-jmx/issues",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --recursive"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,9 @@
     "java": ">=0.2.1"
   },
   "devDependencies": {
-    "mocha": "~1.9.0"
+    "mocha": "~1.9.0",
+    "jscoverage" : "~0.3.7",
+    "mocha-lcov-reporter" : "0.0.1",
+    "coveralls": "2.0.7"
   }
 }

@@ -1,7 +1,9 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../lib-cov" : "./../lib";
+
 var assert = require("assert"),
     java = require("java"),
-    JavaJmx = require("./../lib/javaJmx.js"),
-    MBeanServerConnection = require("./../lib/adapters/mbeanServerConnection.js");
+    JavaJmx = require(libpath + "/javaJmx.js"),
+    MBeanServerConnection = require(libpath + "/adapters/mbeanServerConnection.js");
 
 describe("JavaJmx", function() {
   var javaJmx;

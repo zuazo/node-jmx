@@ -1,6 +1,8 @@
+var libpath = process.env["JMX_COVERAGE"] ? "./../../../lib-cov" : "./../../../lib";
+
 var assert = require("assert"),
     java = require("java"),
-    conversions = require("./../../../lib/adapters/helpers/conversions");
+    conversions = require(libpath + "/adapters/helpers/conversions");
 
 describe("conversions", function() {
 
