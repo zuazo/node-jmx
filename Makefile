@@ -6,10 +6,10 @@ test:
 	node --version | grep -Fq '$(COV_NODE_VER)' && ! test -z $(TRAVIS_JOB_ID) && $(MAKE) test-no-coveralls test-coveralls || $(MAKE) test-no-coveralls
 
 lib-cov:
-	jscoverage lib lib-cov
+	@jscoverage lib lib-cov
 
 test-cov:	lib-cov
-	@JMX_COVERAGE=1 $(MAKE) test REPORTER=html-cov > $(COV_OUTPUT)
+	@JMX_COVERAGE=1 $(MAKE) mocha REPORTER=html-cov > $(COV_OUTPUT)
 	rm -rf lib-cov
 	@echo "Coverate Output File: $(COV_OUTPUT)"
 
@@ -22,6 +22,6 @@ test-no-coveralls:
 	@JMX_COVERAGE= $(MAKE) mocha
 
 mocha:
-	NODE_ENV=test ./node_modules/.bin/mocha -b --recursive --reporter $(REPORTER)
+	@NODE_ENV=test ./node_modules/.bin/mocha -b --recursive --reporter $(REPORTER)
 
 .PHONY: test
