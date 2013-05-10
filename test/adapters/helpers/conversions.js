@@ -11,14 +11,15 @@ describe("conversions", function() {
     [
 
       // js objects
-      [ "some string", "java.lang.String" ],
-      [ false,         "boolean"          ],
-      [ 1,             "int"              ],
-      [ -2147483648,   "int"              ],
-      [ -2147483649,   "double"           ],
-      [ 4294967295,    "int"              ],
-      [ 4294967296,    "double"           ],
-      [ 1.5,           "double"           ],
+      [ "some string",  "java.lang.String" ],
+      [ false,          "boolean"          ],
+      [ 1,              "int"              ],
+      [ -2147483648,    "int"              ],
+      [ -2147483649,    "double"           ],
+      [ 4294967295,     "int"              ],
+      [ 4294967296,     "double"           ],
+      [ 1.5,            "double"           ],
+      [ [ "an array" ], "java.lang.Object" ], // TODO: test/fix this
 
       // java objects
       [ java.newInstanceSync("java.lang.String", "other string"), "java.lang.String" ],
@@ -39,6 +40,51 @@ describe("conversions", function() {
         assert.strictEqual(conversions.v8ToJavaClass(param), javaClass);
       });
 
+    });
+
+    it("should throw an exception when the object cannot be converted", function() {
+      assert.throws(
+        function() {
+          conversions.v8ToJavaClass(undefined);
+        },
+        /v8ToJavaClass[(][)]: unknown object type/
+      );
+    });
+
+  });
+
+  describe("#isJavaPrimitiveClass", function() {
+
+    [
+      "byte",
+      "short",
+      "int",
+      "long",
+      "float",
+      "double",
+      "boolean",
+      "char"
+    ].forEach(function(className) {
+      it("should return true for \"" + className + "\"", function() {
+        assert.strictEqual(conversions.isJavaPrimitiveClass(className), true);
+      });
+    });
+
+    [
+      "java.lang.Byte",
+      "java.lang.Short",
+      "java.lang.Integer",
+      "java.lang.Long",
+      "java.lang.Float",
+      "java.lang.Double",
+      "java.long.Boolean",
+      "java.lang.String",
+      "java.lang.Object",
+      java.newInstanceSync("javax.management.Attribute",  "name", "value").getClassSync().getNameSync()
+    ].forEach(function(className) {
+      it("should return false for \"" + className + "\"", function() {
+        assert.strictEqual(conversions.isJavaPrimitiveClass(className), false);
+      });
     });
 
   });
