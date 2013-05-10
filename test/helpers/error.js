@@ -12,8 +12,24 @@ describe("error", function() {
 
   describe("#debug", function() {
 
-    it("should not print to console by default", function() {
+    it("should have an empty/nop debug function by default", function() {
+      var old_node_debug = process.env.NODE_DEBUG;
+      process.env.NODE_DEBUG = "other-node-module";
       var debug = require_debug_reload();
+      process.env.NODE_DEBUG = old_node_debug;
+
+      var debug = require_debug_reload();
+      var debugString = debug.toString().replace(/\s+/g, '');
+      var emptyFunc = (function() {}).toString().replace(/\s+/g, '');
+      assert.strictEqual(debugString, emptyFunc);
+      assert.strictEqual(debug(), undefined);
+    });
+
+    it("should not print to console by default", function() {
+      var old_node_debug = process.env.NODE_DEBUG;
+      process.env.NODE_DEBUG = "other-node-module";
+      var debug = require_debug_reload();
+      process.env.NODE_DEBUG = old_node_debug;
 
       var count = 0;
       var _console_log = console.log;
@@ -62,6 +78,20 @@ describe("error", function() {
       assert.strictEqual(error_count, 1, "console.error() called more than once");
     });
 
+  });
+
+  it("should return without error when console.error does not exist", function() {
+      var old_node_debug = process.env.NODE_DEBUG;
+      process.env.NODE_DEBUG = "jmx";
+      var debug = require_debug_reload();
+      process.env.NODE_DEBUG = old_node_debug;
+
+      var _console_error = console.error;
+      console.error = null;
+      var result = debug("this should not be printed");
+      console.error = _console_error;
+
+      assert.strictEqual(result,  undefined);
   });
 
   describe("#checkError", function() {
