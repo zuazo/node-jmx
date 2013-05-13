@@ -165,6 +165,19 @@ describe("JavaJmx", function() {
 
   describe("#invoke", function() {
 
+    it("should accept three parameters", function(done) {
+      javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
+        assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
+        assert.strictEqual(methodName, "methodName");
+        assert.deepEqual(params, [ "param1" ]);
+        assert.deepEqual(signature, [ "java.lang.String" ]);
+        assert.strictEqual(callback, undefined);
+        assert.strictEqual(undef, undefined);
+        done();
+      };
+      javaJmx.invoke("mbean", "methodName", [ "param1" ]);
+    });
+
     it("should accept a callback as the fourth parameter", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
@@ -180,7 +193,7 @@ describe("JavaJmx", function() {
       });
     });
 
-    it("should accept a signature as the fourth parameter", function(done) {
+    it("should accept a signature as the fourth parameter with a callback", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -193,6 +206,19 @@ describe("JavaJmx", function() {
       javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "int" ], function(value) {
         done();
       });
+    });
+
+    it("should accept a signature as the fourth parameter without a callback", function(done) {
+      javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
+        assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
+        assert.strictEqual(methodName, "methodName");
+        assert.deepEqual(params, [ "param1" ]);
+        assert.deepEqual(signature, [ "int" ]);
+        assert.strictEqual(callback, undefined);
+        assert.strictEqual(undef, undefined);
+        done();
+      };
+      javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "int" ]);
     });
 
     it("should throw an exception when params has unknown types", function(done) {
