@@ -142,6 +142,15 @@ describe("JavaJmx", function() {
       javaJmx.setAttribute("mbean", "attributeName", "value", done);
     })
 
+    it("should accept the optional className parameter", function(done) {
+      javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
+        assert.strictEqual(attribute.getValueSync().getClassSync().getNameSync(), "javax.management.ObjectName");
+        assert.strictEqual(attribute.getValueSync().getDomainSync(), "domain");
+        callback();
+      };
+      javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName", done);
+    })
+
   });
 
   it("#setCredentials", function(done) {
