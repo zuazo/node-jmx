@@ -129,7 +129,20 @@ describe("JavaJmx", function() {
 
   describe("#setAttribute", function() {
 
-    it("should call MBeanServer.setAttribute with the correct parameters", function(done) {
+    it("should accept three parameters", function(done) {
+      javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
+        assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
+        assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
+        assert.strictEqual(attribute.getNameSync(), "attributeName");
+        assert.strictEqual(attribute.getValueSync(), "value");
+        assert.strictEqual(callback, undefined);
+        assert.strictEqual(undef, undefined);
+        done();
+      };
+      javaJmx.setAttribute("mbean", "attributeName", "value");
+    });
+
+    it("should accept a callback as the third parameter", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
@@ -142,13 +155,22 @@ describe("JavaJmx", function() {
       javaJmx.setAttribute("mbean", "attributeName", "value", done);
     })
 
-    it("should accept the optional className parameter", function(done) {
+    it("should accept a className as third parameter with a callback", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
         assert.strictEqual(attribute.getValueSync().getClassSync().getNameSync(), "javax.management.ObjectName");
         assert.strictEqual(attribute.getValueSync().getDomainSync(), "domain");
         callback();
       };
       javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName", done);
+    })
+
+    it("should accept a className as third parameter without a callback", function(done) {
+      javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
+        assert.strictEqual(attribute.getValueSync().getClassSync().getNameSync(), "javax.management.ObjectName");
+        assert.strictEqual(attribute.getValueSync().getDomainSync(), "domain");
+        done();
+      };
+      javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName");
     })
 
   });
