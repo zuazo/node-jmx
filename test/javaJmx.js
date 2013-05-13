@@ -51,6 +51,16 @@ describe("JavaJmx", function() {
 
     });
 
+    it("should close the connection when a \"Connection Refused\" java error is returned", function(done) {
+      javaJmx.mbeanServerConnection.close = function() {
+        done();
+      };
+      javaJmx.on("error", function(err) {
+        assert.strictEqual(err, "java.net.ConnectException: Connection refused");
+      });
+      javaJmx.mbeanServerConnection.emit("error", "java.net.ConnectException: Connection refused");
+    });
+
   });
 
   describe("#JmxServiceUrl", function() {
@@ -117,17 +127,21 @@ describe("JavaJmx", function() {
     javaJmx.getMBeanCount();
   });
 
-  it("#setAttribute", function(done) {
-    javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
-      assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
-      assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
-      assert.strictEqual(attribute.getNameSync(), "attributeName");
-      assert.strictEqual(attribute.getValueSync(), "value");
-      assert.strictEqual(typeof callback, "function");
-      assert.strictEqual(undef, undefined);
-      callback();
-    };
-    javaJmx.setAttribute("mbean", "attributeName", "value", done);
+  describe("#setAttribute", function() {
+
+    it("should call MBeanServer.setAttribute with the correct parameters", function(done) {
+      javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
+        assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
+        assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
+        assert.strictEqual(attribute.getNameSync(), "attributeName");
+        assert.strictEqual(attribute.getValueSync(), "value");
+        assert.strictEqual(typeof callback, "function");
+        assert.strictEqual(undef, undefined);
+        callback();
+      };
+      javaJmx.setAttribute("mbean", "attributeName", "value", done);
+    })
+
   });
 
   it("#setCredentials", function(done) {
@@ -142,7 +156,7 @@ describe("JavaJmx", function() {
 
   describe("#invoke", function() {
 
-    it ("should accept a callback as the fourth parameter", function(done) {
+    it("should accept a callback as the fourth parameter", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -157,7 +171,7 @@ describe("JavaJmx", function() {
       });
     });
 
-    it ("should accept a signature as the fourth parameter", function(done) {
+    it("should accept a signature as the fourth parameter", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -170,6 +184,15 @@ describe("JavaJmx", function() {
       javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "int" ], function(value) {
         done();
       });
+    });
+
+    it("should throw an exception when params has unknown types", function(done) {
+      javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {};
+      javaJmx.on("error", function(err) {
+        assert.ok(/v8ToJavaClass[(][)]: unknown object type/.test(err));
+        done();
+      });
+      javaJmx.invoke("mbean", "methodName", [ undefined ], function() {});
     });
 
   });
