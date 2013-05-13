@@ -109,7 +109,7 @@ Returns total the number of MBeans.
 
 * `callback(mbeanCount)`
 
-### Client.invoke(mbean, methodName, params, [signature,] callback)
+### Client.invoke(mbean, methodName, params, [signature,] [callback])
 
 Invokes a MBean operation.
 
