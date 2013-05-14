@@ -175,6 +175,13 @@ $ NODE_DEBUG="jmx" node [...]
 
 ## History
 
+### 0.1.1
+
+* More tests added.
+* Travis and Coveralls integration.
+* javaJmx#setAttribute className argument bug fixed.
+* JavaJmx#invoke and javaJmx#setAttribute function parameters management improved.
+
 ### 0.1.0
 
 * The first published version.
