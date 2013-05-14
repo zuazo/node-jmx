@@ -179,7 +179,7 @@ $ NODE_DEBUG="jmx" node [...]
 
 * More tests added.
 * Travis and Coveralls integration.
-* javaJmx#setAttribute className argument bug fixed.
+* JavaJmx#setAttribute className parameter bug fixed.
 * JavaJmx#invoke and javaJmx#setAttribute function parameters management improved.
 
 ### 0.1.0
