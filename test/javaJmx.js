@@ -11,7 +11,7 @@ describe("JavaJmx", function() {
     javaJmx = new JavaJmx("localhost", 3000);
     javaJmx.mbeanServerConnection.queryMBeans = function(objName, queryObject, callback) {
       var instance = java.newInstanceSync("javax.management.ObjectInstance", "MBean1:type=MBean1", "java.lang.Object");
-      callback(instance);
+      callback(instance, function() {});
     };
   });
 
