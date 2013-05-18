@@ -118,6 +118,20 @@ describe("Integration tests", function() {
         });
       });
 
+      it("#listMBeans", function(done) {
+        function arrayContains(arr, value) {
+          for (var k in arr) {
+            if (arr[k] == value) return true;
+          }
+          return false;
+        }
+
+        client.listMBeans(function(mbeans) {
+          assert.ok(arrayContains(mbeans, "com.onddo.test:type=JmxAppExample"));
+          done();
+        });
+      });
+
       describe("#invoke", function() {
 
         it("should invoke a method", function(done) {
