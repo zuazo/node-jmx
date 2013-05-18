@@ -6,7 +6,7 @@ node.js bridge library to communicate with java applications through JMX.
 [![Build Status](https://travis-ci.org/onddo/node-jmx.png)](https://travis-ci.org/onddo/node-jmx)
 [![Coverage Status](https://coveralls.io/repos/onddo/node-jmx/badge.png?branch=master)](https://coveralls.io/r/onddo/node-jmx?branch=master)
 
-## Requirements:
+## Requirements
 
 * Java version 6 or higher.
 * `node-java`: See [its installation instructions](https://github.com/nearinfinity/node-java/blob/master/README.md#installation-linuxwindows).
