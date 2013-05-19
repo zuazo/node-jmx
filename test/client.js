@@ -137,6 +137,15 @@ describe("Client", function() {
       client.invoke("mbean", "methodName", "params", "signatureOrCallback", "callback", "defined");
     });
 
+    it("#listMBeans", function(done) {
+      client.javaJmx.listMBeans = function(callback, undef) {
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
+        done();
+      };
+      client.listMBeans("callback", "defined");
+    });
+
     it("#disconnect", function(done) {
       client.javaJmx.disconnect = function(undef) {
         assert.strictEqual(undef, undefined);

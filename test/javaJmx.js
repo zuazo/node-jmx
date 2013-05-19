@@ -9,9 +9,9 @@ describe("JavaJmx", function() {
   var javaJmx;
   beforeEach(function() {
     javaJmx = new JavaJmx("localhost", 3000);
-    javaJmx.mbeanServerConnection.queryMBeans = function(objName, queryObject, callback) {
+    javaJmx.mbeanServerConnection.queryMBeans = function(objName, queryObject, callback, end_callback) {
       var instance = java.newInstanceSync("javax.management.ObjectInstance", "MBean1:type=MBean1", "java.lang.Object");
-      callback(instance, function() {});
+      callback(instance, end_callback || function() {});
     };
   });
 
@@ -252,6 +252,20 @@ describe("JavaJmx", function() {
       javaJmx.invoke("mbean", "methodName", [ undefined ], function() {});
     });
 
+  });
+
+  it("#listMBeans", function(done) {
+    function arrayContains(arr, value) {
+      for (var k in arr) {
+        if (arr[k] == value) return true;
+      }
+      return false;
+    }
+
+    javaJmx.listMBeans(function(mbeans) {
+      assert.ok(arrayContains(mbeans, "MBean1:type=MBean1"));
+      done();
+    });
   });
 
 });

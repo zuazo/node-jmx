@@ -106,8 +106,8 @@ describe("MBeanServerConnection", function() {
     mbeanServerConnection.connect();
   }
 
-  it("#queryMBeans", function(done) {
-    testOnConnected(function() {
+  describe("#queryMBeans", function() {
+    function stubQueryMBeans() {
       mbeanServerConnection.mbeanServerConnection.queryMBeans = function(objName, queryObject, callback) {
         var instance = java.newInstanceSync("javax.management.ObjectInstance", "MBean1:type=MBean1", "java.lang.Object");
         var instances = {
@@ -117,11 +117,40 @@ describe("MBeanServerConnection", function() {
         };
         callback(undefined, instances);
       };
-      mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance) {
-        assert.strictEqual(instance.getObjectNameSync().toStringSync(), "MBean1:type=MBean1");
-        done();
+    }
+
+    it("should return the correct MBeans", function(done) {
+      testOnConnected(function() {
+        stubQueryMBeans();
+        mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance, callback) {
+          assert.strictEqual(instance.getObjectNameSync().toStringSync(), "MBean1:type=MBean1");
+          done();
+        });
       });
     });
+
+    it("should accept empty query", function(done) {
+      testOnConnected(function() {
+        stubQueryMBeans();
+        mbeanServerConnection.queryMBeans(null, null, function(instance, callback) {
+          assert.strictEqual(instance.getObjectNameSync().toStringSync(), "MBean1:type=MBean1");
+          done();
+        });
+      });
+    });
+
+    it("should call the final callback function when done", function(done) {
+      testOnConnected(function() {
+        stubQueryMBeans();
+        mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance,callback) {
+          assert.strictEqual(instance.getObjectNameSync().toStringSync(), "MBean1:type=MBean1");
+          callback();
+        }, function() {
+          done();
+        });
+      });
+    });
+
   });
 
   function testReflectionCall(method, methodParamsClass, methodParams, callback) {
