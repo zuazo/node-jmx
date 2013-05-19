@@ -119,6 +119,10 @@ Invokes a MBean operation.
 * `signature` (optional) - An array with the signature of the *params*. Sometimes may be necessary to use this if class names are not correctly detected (gives a *NoSuchMethodException*). For example `[ "int", "java.lang.Integer", "java.lang.String" ]`.
 * `callback(returnedValue)`
 
+### Client.listMBeans(callback)
+
+Lists server MBeans. Callback returns an array of strings containing MBean names.
+
 ### Client.on(event, callback)
 
 Adds a listener for the especified event.
