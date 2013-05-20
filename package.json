@@ -32,7 +32,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "async": "0.2.8",
+    "async": "~0.2.8",
     "java": "~0.2.1"
   },
   "devDependencies": {
