@@ -179,6 +179,10 @@ $ NODE_DEBUG="jmx" node [...]
 
 ## History
 
+### 0.2.0
+
+* Added #listMBeans method.
+
 ### 0.1.1
 
 * More tests added.
