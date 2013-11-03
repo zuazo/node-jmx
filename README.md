@@ -8,7 +8,7 @@ node.js bridge library to communicate with java applications through JMX.
 
 ## Requirements
 
-* Tested with node >= 0.8.
+* Tested with node `>= 0.8`.
 * Java version 6 or higher.
 * `node-java`: See [its installation instructions](https://github.com/nearinfinity/node-java/blob/master/README.md#installation-linuxwindows).
 
@@ -179,6 +179,12 @@ $ NODE_DEBUG="jmx" node [...]
 ```
 
 ## History
+
+### 0.2.1
+
+* Travis hostname errors fixed.
+* Removed node `0.6` support: not supported by the last `node-java` version.
+* Homepage changed to GitHub Pages.
 
 ### 0.2.0
 
