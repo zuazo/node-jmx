@@ -7,6 +7,8 @@ node_js:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq default-jdk g++ make
-  - echo -e "127.0.0.1 localhost" | sudo tee -a /etc/hosts
+  - echo -e "127.0.0.1 localhost\n127.0.0.1 travis001.onddo.com" | sudo tee -a /etc/hosts
+  - sudo hostname 'travis001.onddo.com'
+  - hostname | sudo tee /etc/hostname
 env:
   - JAVA_HOME="/usr/lib/jvm/default-java"
