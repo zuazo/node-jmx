@@ -6,7 +6,7 @@ test:
 	node --version | grep -Fq '$(COV_NODE_VER)' && ! test -z $(TRAVIS_JOB_ID) && $(MAKE) test-no-coveralls test-coveralls || $(MAKE) test-no-coveralls
 
 lib-cov:
-	@jscoverage lib lib-cov
+	@./node_modules/jscoverage/bin/jscoverage lib lib-cov
 
 test-cov:	lib-cov
 	@JMX_COVERAGE=1 $(MAKE) mocha REPORTER=html-cov > $(COV_OUTPUT)
