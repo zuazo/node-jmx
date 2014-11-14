@@ -14,7 +14,7 @@ node.js bridge library to communicate with java applications through JMX.
 
 ## Installation
 
-Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JRE installation directory. For example:
+Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JDK installation directory. For example:
 
 ```bash
 $ export JAVA_HOME=/usr/lib/jvm/default-java
