@@ -3,8 +3,9 @@
 node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.png)](http://badge.fury.io/js/jmx)
-[![Build Status](https://travis-ci.org/onddo/node-jmx.png)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](https://coveralls.io/repos/onddo/node-jmx/badge.png?branch=master)](https://coveralls.io/r/onddo/node-jmx?branch=master)
+[![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
+[![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
 
 ## Requirements
 
