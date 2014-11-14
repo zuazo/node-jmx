@@ -2,7 +2,10 @@ REPORTER=spec
 COV_OUTPUT=coverage.html
 COV_NODE_VER=v0.10.
 
-test:
+style:
+	@./node_modules/.bin/jshint index.js lib test
+
+test:	style
 	node --version | grep -Fq '$(COV_NODE_VER)' && ! test -z $(TRAVIS_JOB_ID) && $(MAKE) test-no-coveralls test-coveralls || $(MAKE) test-no-coveralls
 
 lib-cov:

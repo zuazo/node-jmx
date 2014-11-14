@@ -39,6 +39,7 @@
     "mocha": "~2.0.1",
     "jscoverage" : "~0.5.9",
     "mocha-lcov-reporter" : "0.0.1",
-    "coveralls": "2.11.2"
+    "coveralls": "2.11.2",
+    "jshint": "= 2.5.10"
   }
 }
