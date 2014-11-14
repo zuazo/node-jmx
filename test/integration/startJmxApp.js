@@ -9,11 +9,11 @@ var jmxAppName = "JmxAppExample",
       "-Dcom.sun.management.jmxremote.ssl=false"
     ];
 
-var java_bin
+var java_bin;
 if (JAVA_HOME) {
   java_bin = JAVA_HOME + "/bin/java";
 } else {
-  java_bin = "java"
+  java_bin = "java";
 }
 
 function StartJmxApp(port, password_file, done) {
@@ -31,7 +31,7 @@ function StartJmxApp(port, password_file, done) {
 
   this.onClose = function() {
     console.log(jmxAppName + " closed.");
-  }
+  };
 
   var args = jmxEnableArgs.slice();
   args.push("-Dcom.sun.management.jmxremote.port=" + port);
@@ -53,7 +53,7 @@ function StartJmxApp(port, password_file, done) {
   this.jmxApp.stdout.on("data", onData);
   this.jmxApp.stderr.on("data", onDataError);
 
-};
+}
 
 StartJmxApp.getJavaVersion = function(callback) {
   exec(java_bin + " -version", function (error, stdout, stderr) {
@@ -69,7 +69,7 @@ StartJmxApp.getJavaVersion = function(callback) {
 
 StartJmxApp.prototype.stop = function(callback) {
   if (this.jmxApp) {
-    this.onClose = callback || new Function();
+    this.onClose = callback || function() {};
     this.jmxApp.stdin.write("exit\n");
   } else {
     callback();

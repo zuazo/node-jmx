@@ -1,4 +1,4 @@
-var libpath = process.env["JMX_COVERAGE"] ? "./../lib-cov" : "./../lib";
+var libpath = process.env.JMX_COVERAGE ? "./../lib-cov" : "./../lib";
 
 var assert = require("assert"),
     java = require("java"),
@@ -153,7 +153,7 @@ describe("JavaJmx", function() {
         callback();
       };
       javaJmx.setAttribute("mbean", "attributeName", "value", done);
-    })
+    });
 
     it("should accept a className as third parameter with a callback", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
@@ -162,7 +162,7 @@ describe("JavaJmx", function() {
         callback();
       };
       javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName", done);
-    })
+    });
 
     it("should accept a className as third parameter without a callback", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
@@ -171,7 +171,7 @@ describe("JavaJmx", function() {
         done();
       };
       javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName");
-    })
+    });
 
   });
 

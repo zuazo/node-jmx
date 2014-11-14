@@ -9,11 +9,11 @@ describe("Integration tests", function() {
   this.timeout(5000);
   before(function(done) {
 
-    if (!process.env["JMX_COVERAGE"]) {
+    if (!process.env.JMX_COVERAGE) {
       console.log("    Node.js version: " + process.version);
     }
     StartJmxApp.getJavaVersion(function(java_version) {
-      if (!process.env["JMX_COVERAGE"]) {
+      if (!process.env.JMX_COVERAGE) {
         console.log("    Java version:");
         console.log(java_version.replace(/^/mg, "        "));
       }
@@ -186,7 +186,7 @@ describe("Integration tests", function() {
                 });
               });
             });
-          })
+          });
         });
 
         it("should accept String object values", function(done) {
@@ -275,7 +275,7 @@ describe("Integration tests", function() {
           host: "127.0.0.1",
           port: jmxPort
         });
-        client.on("error", new Function()); // ignore errors
+        client.on("error", function() {}); // ignore errors
         client.connect();
         done();
       });
@@ -291,7 +291,7 @@ describe("Integration tests", function() {
         client.getMBeanCount(function(count) {
           client.on("disconnect", done);
           jmxApp.stop(function() {
-            client.getMBeanCount(new Function());
+            client.getMBeanCount(function() {});
           });
         });
       });

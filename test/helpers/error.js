@@ -1,4 +1,4 @@
-var libpath = process.env["JMX_COVERAGE"] ? "./../../lib-cov" : "./../../lib";
+var libpath = process.env.JMX_COVERAGE ? "./../../lib-cov" : "./../../lib";
 
 var assert = require("assert"),
     checkError = require(libpath + "/helpers/error").checkError;
@@ -13,12 +13,14 @@ describe("error", function() {
   describe("#debug", function() {
 
     it("should have an empty/nop debug function by default", function() {
+      var debug;
+
       var old_node_debug = process.env.NODE_DEBUG;
       process.env.NODE_DEBUG = "other-node-module";
-      var debug = require_debug_reload();
+      debug = require_debug_reload();
       process.env.NODE_DEBUG = old_node_debug;
 
-      var debug = require_debug_reload();
+      debug = require_debug_reload();
       var debugString = debug.toString().replace(/\s+/g, '');
       var emptyFunc = (function() {}).toString().replace(/\s+/g, '');
       assert.strictEqual(debugString, emptyFunc);
