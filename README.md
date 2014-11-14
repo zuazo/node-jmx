@@ -10,14 +10,11 @@ node.js bridge library to communicate with java applications through JMX.
 
 * Tested with node `>= 0.8`.
 * Java version 6 or higher.
-* `node-java`: See [its installation instructions](https://github.com/nearinfinity/node-java/blob/master/README.md#installation-linuxwindows).
+* `node-java`: See [its installation instructions](https://github.com/joeferner/node-java/tree/v0.4.3#installation)
 
 ## Installation
 
-Before the installation, you must set your `JAVA_HOME` environment variable to point to the java JDK installation directory. For example:
-
 ```bash
-$ export JAVA_HOME=/usr/lib/jvm/default-java
 $ npm install jmx
 ```
 
