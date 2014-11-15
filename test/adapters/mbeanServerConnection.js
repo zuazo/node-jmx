@@ -28,12 +28,12 @@ describe("MBeanServerConnection", function() {
       };
     });
 
-    it("should receive URI as argument", function() {
+    it("receives URI as argument", function() {
       var mbeanServerConnection = new MBeanServerConnection("uri2");
       assert.strictEqual(mbeanServerConnection.jmxServiceUrl, "uri2");
     });
 
-    it("should subscribe to javaReflector error events", function() {
+    it("subscribes to javaReflector error events", function() {
       mbeanServerConnection.javaReflection.emit("error");
       assert.deepEqual(emitted, [ "error" ]);
     });
@@ -42,7 +42,7 @@ describe("MBeanServerConnection", function() {
 
   describe("#connect", function() {
 
-    it("should emit connect event when connected", function(done) {
+    it("emits connect event when connected", function(done) {
       mbeanServerConnection.emit = function(ev) {
         if (ev === "connect") {
           done();
@@ -51,12 +51,12 @@ describe("MBeanServerConnection", function() {
       mbeanServerConnection.connect();
     });
 
-    it("should receive URI as argument", function() {
+    it("receives URI as argument", function() {
       mbeanServerConnection.connect("uri2");
       assert.strictEqual(mbeanServerConnection.jmxServiceUrl, "uri2");
     });
 
-    it("should generate authentication credentials when required", function(done) {
+    it("generates authentication credentials when required", function(done) {
       mbeanServerConnection.username = "username1";
       mbeanServerConnection.password = "password2";
       mbeanServerConnection.JMXConnectorFactory.connect = function(jmxServiceUrl, map, callback) {
@@ -79,14 +79,14 @@ describe("MBeanServerConnection", function() {
       };
     });
 
-    it("should try to close de connection when called", function(done) {
+    it("tries to close de connection when called", function(done) {
       mbeanServerConnection.jmxConnector.close = function() {
         done();
       };
       mbeanServerConnection.close();
     });
 
-    it("should emit disconnect event when connected", function(done) {
+    it("emits disconnect event when connected", function(done) {
       mbeanServerConnection.emit = function(ev) {
         if (ev === "disconnect") {
           done();
@@ -119,7 +119,7 @@ describe("MBeanServerConnection", function() {
       };
     }
 
-    it("should return the correct MBeans", function(done) {
+    it("returns the correct MBeans", function(done) {
       testOnConnected(function() {
         stubQueryMBeans();
         mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance, callback) {
@@ -129,7 +129,7 @@ describe("MBeanServerConnection", function() {
       });
     });
 
-    it("should accept empty query", function(done) {
+    it("accepts empty query", function(done) {
       testOnConnected(function() {
         stubQueryMBeans();
         mbeanServerConnection.queryMBeans(null, null, function(instance, callback) {
@@ -139,7 +139,7 @@ describe("MBeanServerConnection", function() {
       });
     });
 
-    it("should call the final callback function when done", function(done) {
+    it("calls the final callback function when done", function(done) {
       testOnConnected(function() {
         stubQueryMBeans();
         mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance,callback) {
@@ -151,7 +151,7 @@ describe("MBeanServerConnection", function() {
       });
     });
 
-    it("should emit error on premature disconnections", function(done) {
+    it("emits error on premature disconnections", function(done) {
       testOnConnected(function() {
         mbeanServerConnection.emit = function(ev, err) {
           if (ev === "error" && /Premature disconnect/.test(err)) {

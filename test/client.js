@@ -7,12 +7,12 @@ describe("Client", function() {
 
   describe("#Client", function() {
 
-    it("should return a Client object passing the correct arguments", function() {
+    it("returns a Client object passing the correct arguments", function() {
       var client = new Client("localhost", 3000);
       assert.ok(client instanceof Client);
     });
 
-    it("should throw the correct exception when no argument is passed", function() {
+    it("throws the correct exception when no argument is passed", function() {
       assert.throws(
         function() {
           new Client();
@@ -21,13 +21,13 @@ describe("Client", function() {
       );
     });
 
-    it("should accept username and password as arguments", function() {
+    it("accepts username and password as arguments", function() {
       var client = new Client("localhost", 3000, undefined, undefined, "username", "password");
       assert.strictEqual(client.username, "username");
       assert.strictEqual(client.password, "password");
     });
 
-    describe("should subscribe to JavaJmx events", function() {
+    describe("subscribes to JavaJmx events", function() {
       var client;
       var emitted;
       beforeEach(function() {
@@ -53,7 +53,7 @@ describe("Client", function() {
 
   });
 
-  describe("Methods that should call javaJmx directly and with the correct arguments", function() {
+  describe("Methods that calls javaJmx directly and with the correct arguments", function() {
     this.timeout(100);
     var client;
     var method;

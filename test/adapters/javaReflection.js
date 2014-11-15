@@ -20,7 +20,7 @@ describe("JavaReflection", function() {
       });
     }
 
-    it("should be able to call java methods with no arguments", function(done) {
+    it("is able to call java methods with no arguments", function(done) {
       var obj = java.newInstanceSync("javax.management.Attribute", "attributeName1", "value1");
       var paramsClass = [];
       var params = [];
@@ -31,7 +31,7 @@ describe("JavaReflection", function() {
       });
     });
 
-    it("should be able to call java methods with arguments", function(done) {
+    it("is able to call java methods with arguments", function(done) {
       var obj1 = java.newInstanceSync("javax.management.Attribute", "attributeName1", "value1");
       var obj2 = java.newInstanceSync("javax.management.Attribute", "attributeName2", "value2");
       var paramsClass = [ "java.lang.Object" ];
@@ -43,7 +43,7 @@ describe("JavaReflection", function() {
       });
     });
 
-    it("should emit an error when the object method does not exist", function(done) {
+    it("emits an error when the object method does not exist", function(done) {
       var obj1 = java.newInstanceSync("javax.management.Attribute", "attributeName1", "value1");
       var paramsClass = [];
       var params = [];

@@ -17,15 +17,15 @@ describe("JavaJmx", function() {
 
   describe("#JavaJmx", function() {
 
-    it("should return a JavaJmx object passing the correct arguments", function() {
+    it("returns a JavaJmx object passing the correct arguments", function() {
       assert.ok(javaJmx instanceof JavaJmx);
     });
 
-    it("should create an internal MBeanServerConnection object", function() {
+    it("creates an internal MBeanServerConnection object", function() {
       assert.ok(javaJmx.mbeanServerConnection instanceof MBeanServerConnection);
     });
 
-    describe("should subscribe to MBeanServerConnection events", function() {
+    describe("subscribes to MBeanServerConnection events", function() {
       var emitted;
       beforeEach(function() {
         emitted = [];
@@ -51,7 +51,7 @@ describe("JavaJmx", function() {
 
     });
 
-    it("should close the connection when a \"Connection Refused\" java error is returned", function(done) {
+    it("closes the connection when a \"Connection Refused\" java error is returned", function(done) {
       javaJmx.mbeanServerConnection.close = function() {
         done();
       };
@@ -64,7 +64,7 @@ describe("JavaJmx", function() {
   });
 
   describe("#JmxServiceUrl", function() {
-    it("should create a JMXServiceURL java object", function() {
+    it("creates a JMXServiceURL java object", function() {
       var jmxServiceUrl = javaJmx.JmxServiceUrl("localhost", 3000);
       assert.strictEqual(
         jmxServiceUrl.getClassSync().getNameSync(),
@@ -129,7 +129,7 @@ describe("JavaJmx", function() {
 
   describe("#setAttribute", function() {
 
-    it("should accept three parameters", function(done) {
+    it("accepts three parameters", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
@@ -142,7 +142,7 @@ describe("JavaJmx", function() {
       javaJmx.setAttribute("mbean", "attributeName", "value");
     });
 
-    it("should accept a callback as the third parameter", function(done) {
+    it("accepts a callback as the third parameter", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(attribute.getClassSync().getNameSync(), "javax.management.Attribute");
@@ -155,7 +155,7 @@ describe("JavaJmx", function() {
       javaJmx.setAttribute("mbean", "attributeName", "value", done);
     });
 
-    it("should accept a className as third parameter with a callback", function(done) {
+    it("accepts a className as third parameter with a callback", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
         assert.strictEqual(attribute.getValueSync().getClassSync().getNameSync(), "javax.management.ObjectName");
         assert.strictEqual(attribute.getValueSync().getDomainSync(), "domain");
@@ -164,7 +164,7 @@ describe("JavaJmx", function() {
       javaJmx.setAttribute("mbean", "attributeName", [ "domain", "name", "value" ], "javax.management.ObjectName", done);
     });
 
-    it("should accept a className as third parameter without a callback", function(done) {
+    it("accepts a className as third parameter without a callback", function(done) {
       javaJmx.mbeanServerConnection.setAttribute = function(objectName, attribute, callback) {
         assert.strictEqual(attribute.getValueSync().getClassSync().getNameSync(), "javax.management.ObjectName");
         assert.strictEqual(attribute.getValueSync().getDomainSync(), "domain");
@@ -187,7 +187,7 @@ describe("JavaJmx", function() {
 
   describe("#invoke", function() {
 
-    it("should accept three parameters", function(done) {
+    it("accepts three parameters", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -200,7 +200,7 @@ describe("JavaJmx", function() {
       javaJmx.invoke("mbean", "methodName", [ "param1" ]);
     });
 
-    it("should accept a callback as the fourth parameter", function(done) {
+    it("accepts a callback as the fourth parameter", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -215,7 +215,7 @@ describe("JavaJmx", function() {
       });
     });
 
-    it("should accept a signature as the fourth parameter with a callback", function(done) {
+    it("accepts a signature as the fourth parameter with a callback", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -230,7 +230,7 @@ describe("JavaJmx", function() {
       });
     });
 
-    it("should accept a signature as the fourth parameter without a callback", function(done) {
+    it(" accepts a signature as the fourth parameter without a callback", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
@@ -243,7 +243,7 @@ describe("JavaJmx", function() {
       javaJmx.invoke("mbean", "methodName", [ "param1" ], [ "int" ]);
     });
 
-    it("should throw an exception when params has unknown types", function(done) {
+    it("throws an exception when params has unknown types", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {};
       javaJmx.on("error", function(err) {
         assert.ok(/v8ToJavaClass[(][)]: unknown object type/.test(err));

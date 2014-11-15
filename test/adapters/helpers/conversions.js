@@ -36,13 +36,13 @@ describe("conversions", function() {
       var param = value[0];
       var javaClass = value[1];
 
-      it("should return \"" + javaClass + "\" for argument value \"" + param + "\" and typeof \"" + typeof param + "\"", function() {
+      it("returns \"" + javaClass + "\" for argument value \"" + param + "\" and typeof \"" + typeof param + "\"", function() {
         assert.strictEqual(conversions.v8ToJavaClass(param), javaClass);
       });
 
     });
 
-    it("should throw an exception when the object cannot be converted", function() {
+    it("throws an exception when the object cannot be converted", function() {
       assert.throws(
         function() {
           conversions.v8ToJavaClass(undefined);
@@ -65,7 +65,7 @@ describe("conversions", function() {
       "boolean",
       "char"
     ].forEach(function(className) {
-      it("should return true for \"" + className + "\"", function() {
+      it("returns true for \"" + className + "\"", function() {
         assert.strictEqual(conversions.isJavaPrimitiveClass(className), true);
       });
     });
@@ -82,7 +82,7 @@ describe("conversions", function() {
       "java.lang.Object",
       java.newInstanceSync("javax.management.Attribute",  "name", "value").getClassSync().getNameSync()
     ].forEach(function(className) {
-      it("should return false for \"" + className + "\"", function() {
+      it("returns false for \"" + className + "\"", function() {
         assert.strictEqual(conversions.isJavaPrimitiveClass(className), false);
       });
     });

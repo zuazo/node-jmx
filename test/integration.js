@@ -27,7 +27,7 @@ describe("Integration tests", function() {
     });
   });
 
-  it("should run java JMX test app", function(done) {
+  it("runs java JMX test app", function(done) {
     var jmxApp = new StartJmxApp(jmxPort, null, function() {
       jmxApp.stop(done);
     });
@@ -42,7 +42,7 @@ describe("Integration tests", function() {
       jmxApp.stop(done);
     });
 
-    it("should connect successfully", function(done) {
+    it("connects successfully", function(done) {
       var client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
@@ -51,7 +51,7 @@ describe("Integration tests", function() {
       client.on("connect", done);
     });
 
-    it("should disconnect successfully", function(done) {
+    it("disconnects successfully", function(done) {
       var client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
@@ -61,7 +61,7 @@ describe("Integration tests", function() {
       client.on("disconnect", done);
     });
 
-    it("should work with multiple clients", function(done) {
+    it("works with multiple clients", function(done) {
       var clients = [
         jmx.createClient({ host: "127.0.0.1", port: jmxPort }),
         jmx.createClient({ host: "127.0.0.1", port: jmxPort })
@@ -77,7 +77,7 @@ describe("Integration tests", function() {
       }, done);
     });
 
-    it("should work when disconnecting prematurely", function(done) {
+    it("works when disconnecting prematurely", function(done) {
       var client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
@@ -96,7 +96,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should not connect when the port is wrong", function(done) {
+    it("does not connect when the port is wrong", function(done) {
       this.timeout(20000);
       var client = jmx.createClient({
         host: "127.0.0.1",
@@ -170,19 +170,19 @@ describe("Integration tests", function() {
 
       describe("#invoke", function() {
 
-        it("should invoke a method", function(done) {
+        it("invokes a method", function(done) {
           client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
             done();
           });
         });
 
-        it("should invoke a method with simple args", function(done) {
+        it("invokes a method with simple args", function(done) {
           client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithSimpleArgs", [ "hello" ], function(data) {
             done();
           });
         });
 
-        it("should invoke a method with complex args using className", function(done) {
+        it("invokes a method with complex args using className", function(done) {
           var values = [ 1, 5, 22];
           var classNames = [ "long", "int", "java.lang.Long" ];
           client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithMixedArguments", values, classNames, function(data) {
@@ -190,14 +190,14 @@ describe("Integration tests", function() {
           });
         });
 
-        it("should return long values correctly", function(done) {
+        it("returns long values correctly", function(done) {
           client.invoke("com.onddo.test:type=JmxAppExample", "callLongWithSimpleArgs", [], function(data) {
             assert.ok(typeof data.longValue === "string");
             done();
           });
         });
 
-        it("should return java.lang.Long values correctly", function(done) {
+        it("returns java.lang.Long values correctly", function(done) {
           client.invoke("com.onddo.test:type=JmxAppExample", "callLongObjWithSimpleArgs", [], function(data) {
             assert.ok(typeof data.longValue === "string");
             done();
@@ -208,7 +208,7 @@ describe("Integration tests", function() {
 
       describe("#setAttribute", function() {
 
-        it("should set a simple string value", function(done) {
+        it("sets a simple string value", function(done) {
           var domain = "com.onddo.test:type=JmxAppExample";
           var attribute = "StringAttr";
           var values = [ "begin", "end" ];
@@ -225,19 +225,19 @@ describe("Integration tests", function() {
           });
         });
 
-        it("should accept String object values", function(done) {
+        it("accepts String object values", function(done) {
           client.setAttribute("com.onddo.test:type=JmxAppExample", "StringAttr", "test", "java.lang.String", function() {
             done();
           });
         });
 
-        it("should set long values", function(done) {
+        it("sets long values", function(done) {
           client.setAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", 22, function() {
             done();
           });
         });
 
-        it("should set java.lang.Long values using className", function(done) {
+        it("sets java.lang.Long values using className", function(done) {
           client.setAttribute("com.onddo.test:type=JmxAppExample", "LongObjAttr", 33, "java.lang.Long", function() {
             done();
           });
@@ -249,7 +249,7 @@ describe("Integration tests", function() {
 
   });
 
-  it("should run java JMX test app with authentication enabled", function(done) {
+  it("runs java JMX test app with authentication enabled", function(done) {
     var jmxApp = new StartJmxApp(jmxPort, "jmxremote.password", function() {
       jmxApp.stop(function() {
         done();
@@ -270,7 +270,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should not connect successfully without credentials", function(done) {
+    it("does not connect successfully without credentials", function(done) {
       client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort
@@ -290,7 +290,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should connect successfully with the correct credentials", function(done) {
+    it("connects successfully with the correct credentials", function(done) {
       client = jmx.createClient({
         host: "127.0.0.1",
         port: jmxPort,
@@ -322,7 +322,7 @@ describe("Integration tests", function() {
       });
     });
 
-    it("should emit disconnect event", function(done) {
+    it("emits disconnect event", function(done) {
       client.on("connect", function() {
         client.getMBeanCount(function(count) {
           client.on("disconnect", done);
