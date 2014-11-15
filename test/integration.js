@@ -1,4 +1,5 @@
 var assert = require("assert"),
+    async = require("async"),
     chmod = require("fs").chmod,
     jmx = require("./../index.js"),
     StartJmxApp = require("./integration/startJmxApp.js");
@@ -58,6 +59,41 @@ describe("Integration tests", function() {
       client.connect();
       client.on("connect", client.disconnect);
       client.on("disconnect", done);
+    });
+
+    it("should work with multiple clients", function(done) {
+      var clients = [
+        jmx.createClient({ host: "127.0.0.1", port: jmxPort }),
+        jmx.createClient({ host: "127.0.0.1", port: jmxPort })
+      ];
+      async.each(clients, function(client, cb) {
+        client.connect();
+        client.on("connect", function() {
+          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
+            client.disconnect();
+            cb();
+          });
+        });
+      }, done);
+    });
+
+    it("should work when disconnecting prematurely", function(done) {
+      var client = jmx.createClient({
+        host: "127.0.0.1",
+        port: jmxPort
+      });
+      client.connect();
+      client.on("error", function(err) {
+        if (/Premature disconnect/.test(err)) {
+          done();
+        } else {
+          console.error(err);
+        }
+      });
+      client.on("connect", function() {
+        client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {});
+        client.disconnect();
+      });
     });
 
     it("should not connect when the port is wrong", function(done) {

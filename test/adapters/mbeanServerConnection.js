@@ -151,6 +151,18 @@ describe("MBeanServerConnection", function() {
       });
     });
 
+    it("should emit error on premature disconnections", function(done) {
+      testOnConnected(function() {
+        mbeanServerConnection.emit = function(ev, err) {
+          if (ev === "error" && /Premature disconnect/.test(err)) {
+            done();
+          }
+        };
+        mbeanServerConnection.mbeanServerConnection = null; // disconnected
+        mbeanServerConnection.queryMBeans(null, "MBean1:type=MBean1", function(instance,callback) {});
+      });
+    });
+
   });
 
   function testReflectionCall(method, methodParamsClass, methodParams, callback) {
