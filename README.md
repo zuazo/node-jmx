@@ -4,8 +4,8 @@ node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.png)](http://badge.fury.io/js/jmx)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
-[![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
+[![Build Status](http://img.shields.io/travis/onddo/node-jmx/0.3.0.svg)](https://travis-ci.org/onddo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx/0.3.0.svg)](https://coveralls.io/r/onddo/node-jmx?branch=0.3.0)
 
 ## Requirements
 
@@ -177,6 +177,18 @@ $ NODE_DEBUG="jmx" node [...]
 ```
 
 ## History
+
+### 0.3.0
+
+* package.json: udpate package dependencies (fixes [issue #3](https://github.com/onddo/node-jmx/issues/3)).
+* MBeanServerConnection:
+ * Define *credentials* and *instancesAr* variables.
+ * Some code improvements.
+* Allow premature disconnections (fixes [issue #2](https://github.com/onddo/node-jmx/issues/2)).
+* Fix all [JSHint](http://www.jshint.com/) errors and integrate in the Makefile.
+* README: Add [Code Climate](https://codeclimate.com/) badge.
+* Makefile: Use relative path for jscoverage.
+* Avoid using *should* in tests.
 
 ### 0.2.1
 
