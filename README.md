@@ -4,8 +4,8 @@ node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.png)](http://badge.fury.io/js/jmx)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
-[![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
+[![Build Status](http://img.shields.io/travis/onddo/node-jmx/0.3.1.svg)](https://travis-ci.org/onddo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx/0.3.1.svg)](https://coveralls.io/r/onddo/node-jmx?branch=0.3.1)
 
 ## Requirements
 
@@ -178,6 +178,10 @@ $ NODE_DEBUG="jmx" node [...]
 ```
 
 ## History
+
+### 0.3.1
+
+* Remove jshint dependency from *package.json*.
 
 ### 0.3.0
 
