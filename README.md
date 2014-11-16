@@ -155,7 +155,7 @@ client.on("error", function(err) {
 ## Testing
 
 ```bash
-$ npm install jshint
+$ npm install -g jshint
 $ make style test
 ```
 
