@@ -5,9 +5,9 @@ NO_JSHINT_VER=v0.8.
 JSHINT_ARGS=index.js lib test
 
 style:
-	node --version | grep -Fq '$(NO_JSHINT_VER)' && true || ./node_modules/.bin/jshint $(JSHINT_ARGS)
+	node --version | grep -Fq '$(NO_JSHINT_VER)' && true || jshint $(JSHINT_ARGS)
 
-test:	style
+test:
 	node --version | grep -Fq '$(COV_NODE_VER)' && ! test -z $(TRAVIS_JOB_ID) && $(MAKE) test-no-coveralls test-coveralls || $(MAKE) test-no-coveralls
 
 lib-cov:

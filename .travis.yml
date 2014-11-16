@@ -9,3 +9,4 @@ before_install:
   - echo -e "127.0.0.1 localhost\n127.0.0.1 travis001.onddo.com" | sudo tee -a /etc/hosts
   - sudo hostname 'travis001.onddo.com'
   - hostname | sudo tee /etc/hostname
+  - npm install -g jshint

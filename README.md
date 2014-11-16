@@ -155,7 +155,8 @@ client.on("error", function(err) {
 ## Testing
 
 ```bash
-$ make test
+$ npm install jshint
+$ make style test
 ```
 
 You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
