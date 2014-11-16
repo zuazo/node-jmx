@@ -4,8 +4,8 @@ node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.png)](http://badge.fury.io/js/jmx)
 [![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
-[![Build Status](http://img.shields.io/travis/onddo/node-jmx/0.3.0.svg)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx/0.3.0.svg)](https://coveralls.io/r/onddo/node-jmx?branch=0.3.0)
+[![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
 
 ## Requirements
 
@@ -155,7 +155,8 @@ client.on("error", function(err) {
 ## Testing
 
 ```bash
-$ make test
+$ npm install -g jshint
+$ make style test
 ```
 
 You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
