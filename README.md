@@ -179,6 +179,10 @@ $ NODE_DEBUG="jmx" node [...]
 
 ## History
 
+### 0.3.1
+
+* Remove jshint dependency from *package.json*.
+
 ### 0.3.0
 
 * package.json: udpate package dependencies (fixes [issue #3](https://github.com/onddo/node-jmx/issues/3)).
