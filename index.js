@@ -13,7 +13,7 @@ function createClient(options) {
     port = options.port;
     urlPath = options.urlPath;
   }
-  return new Client(serviceOrHost, port, protocol, urlPath, options.username, options.password, options.protocolProvider);
+  return new Client(serviceOrHost, port, protocol, urlPath, options.username, options.password, options.protocolProvider, options.timeout);
 }
 
 module.exports = {
