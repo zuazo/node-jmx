@@ -73,6 +73,17 @@ describe("Client", function() {
       client.connect();
     });
 
+    it("#getAttributes", function(done) {
+      client.javaJmx.getAttributes = function(mbean, attributes, callback, undef) {
+        assert.strictEqual(mbean, "mbean");
+        assert.strictEqual(attributes, "attributes" );
+        assert.strictEqual(callback, "callback");
+        assert.strictEqual(undef, undefined);
+        done();
+      };
+      client.getAttributes("mbean", "attributes", "callback", "defined");
+    });
+
     it("#getAttribute", function(done) {
       client.javaJmx.getAttribute = function(mbean, attribute, callback, undef) {
         assert.strictEqual(mbean, "mbean");
