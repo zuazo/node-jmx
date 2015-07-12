@@ -76,7 +76,7 @@ describe("Client", function() {
     it("#getAttributes", function(done) {
       client.javaJmx.getAttributes = function(mbean, attributes, callback, undef) {
         assert.strictEqual(mbean, "mbean");
-        assert.strictEqual(attributes, "attributes" );
+        assert.strictEqual(attributes, [ "attribute", "attribute" ] );
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();

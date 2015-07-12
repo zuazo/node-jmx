@@ -93,7 +93,7 @@ describe("JavaJmx", function() {
   it("#getAttributes", function(done) {
     javaJmx.mbeanServerConnection.getAttributes = function(objectName, attributes, callback, undef) {
       assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
-      assert.strictEqual(attributes, "attributes" );
+      assert.strictEqual(attributes, [ "attribute", "attribute" ] );
       assert.strictEqual(typeof callback, "function");
       assert.strictEqual(undef, undefined);
       callback();
