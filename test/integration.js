@@ -126,6 +126,13 @@ describe("Integration tests", function() {
         client.disconnect();
       });
 
+      it("#getAttributes", function(done) {
+        client.getAttribute("com.onddo.test:type=JmxAppExample", [ "LongAttr", "LongAttr" ] , function(value) {
+          assert.ok(typeof value === "object" && typeof value.longValue === "string");
+          done();
+        });
+      });
+
       it("#getAttribute", function(done) {
         client.getAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", function(value) {
           assert.ok(typeof value === "object" && typeof value.longValue === "string");
