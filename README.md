@@ -90,6 +90,14 @@ Returns an attribute from a MBean.
 * `attribute` - Attribute name as string.
 * `callback(attrValue)`
 
+### Client.getAttributes(mbean, attributes, callback)
+
+Returns an attribute from a MBean.
+
+* `mbean` - MBean query address as string. For example "java.lang:type=Memory".
+* `attributes` - Attribute names as an array of string.
+* `callback(attrValue)`
+
 ### Client.getDefaultDomain(callback)
 
 Returns the default domain as string.
