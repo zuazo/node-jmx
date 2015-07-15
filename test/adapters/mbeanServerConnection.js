@@ -176,11 +176,15 @@ describe("MBeanServerConnection", function() {
 
   it("#getAttributes", function(done) {
     var method = "getAttributes";
+
+    var attributesArray = java.newArray("java.lang.String", [ "attribute", "attribute" ]);
+
     var methodParamsClass = [ "javax.management.ObjectName", "[Ljava.lang.String;" ];
     var methodParams = [ "name", [ "attribute", "attribute" ] ];
     testReflectionCall(method, methodParamsClass, methodParams, function(obj, method2, methodParamsClass2, methodParams2, callback2) {
+      var newMethodParams = [ "name", attributesArray ];
       assert.deepEqual(methodParamsClass, methodParamsClass2);
-      assert.deepEqual(methodParams, methodParams2);
+      assert.deepEqual(newMethodParams, methodParams2);
       done();
     });
   });

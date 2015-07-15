@@ -92,7 +92,7 @@ Returns an attribute from a MBean.
 
 ### Client.getAttributes(mbean, attributes, callback)
 
-Returns an attribute from a MBean.
+Returns an attribute list from a MBean.
 
 * `mbean` - MBean query address as string. For example "java.lang:type=Memory".
 * `attributes` - Attribute names as an array of strings.
