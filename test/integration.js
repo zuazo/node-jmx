@@ -127,7 +127,7 @@ describe("Integration tests", function() {
       });
 
       it("#getAttributes", function(done) {
-        client.getAttribute("com.onddo.test:type=JmxAppExample", [ "LongAttr", "LongAttr" ] , function(value) {
+        client.getAttributes("com.onddo.test:type=JmxAppExample", [ "LongAttr", "LongAttr" ], function(value) {
           assert.ok(typeof value === "object" && typeof value.longValue === "string");
           done();
         });
@@ -176,7 +176,6 @@ describe("Integration tests", function() {
       });
 
       describe("#invoke", function() {
-
         it("invokes a method", function(done) {
           client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
             done();

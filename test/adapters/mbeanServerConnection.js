@@ -167,10 +167,8 @@ describe("MBeanServerConnection", function() {
 
   function testReflectionCall(method, methodParamsClass, methodParams, callback) {
     mbeanServerConnection.mbeanServerConnection = "mbeanServerConnection";
-    console.log( "EMB/testReflectionCall method: %s, methodParamsClass: %s, methodParams: %s", method, methodParamsClass, methodParams );
     mbeanServerConnection.javaReflection.invokeMethod = function(obj, method2, methodParamsClass2, methodParams2, callback2) {
       assert.strictEqual(obj, mbeanServerConnection.mbeanServerConnection);
-      console.log( "EMB/invokeMethod arguments: %s", JSON.stringify(arguments) );
       callback.apply(mbeanServerConnection, arguments);
     };
     mbeanServerConnection[method].apply(mbeanServerConnection, methodParams);
@@ -182,7 +180,6 @@ describe("MBeanServerConnection", function() {
     var methodParams = [ "name", [ "attribute", "attribute" ] ];
     testReflectionCall(method, methodParamsClass, methodParams, function(obj, method2, methodParamsClass2, methodParams2, callback2) {
       assert.deepEqual(methodParamsClass, methodParamsClass2);
-      console.log( "EMB/#getAttributes methodParams: %s", methodParams, "methodParams2: %s", methodParams2 );
       assert.deepEqual(methodParams, methodParams2);
       done();
     });

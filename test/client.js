@@ -76,12 +76,12 @@ describe("Client", function() {
     it("#getAttributes", function(done) {
       client.javaJmx.getAttributes = function(mbean, attributes, callback, undef) {
         assert.strictEqual(mbean, "mbean");
-        assert.strictEqual(attributes, [ "attribute", "attribute" ] );
+        assert.strictEqual(JSON.stringify(attributes), JSON.stringify(["attribute","attribute"]) );
         assert.strictEqual(callback, "callback");
         assert.strictEqual(undef, undefined);
         done();
       };
-      client.getAttributes("mbean", "attributes", "callback", "defined");
+      client.getAttributes("mbean", [ "attribute", "attribute" ], "callback", "defined");
     });
 
     it("#getAttribute", function(done) {
