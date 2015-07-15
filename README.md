@@ -95,7 +95,7 @@ Returns an attribute from a MBean.
 Returns an attribute from a MBean.
 
 * `mbean` - MBean query address as string. For example "java.lang:type=Memory".
-* `attributes` - Attribute names as an array of string.
+* `attributes` - Attribute names as an array of strings.
 * `callback(attrValue)`
 
 ### Client.getDefaultDomain(callback)
