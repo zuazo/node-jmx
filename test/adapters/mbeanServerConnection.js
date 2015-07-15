@@ -169,6 +169,7 @@ describe("MBeanServerConnection", function() {
     mbeanServerConnection.mbeanServerConnection = "mbeanServerConnection";
     mbeanServerConnection.javaReflection.invokeMethod = function(obj, method2, methodParamsClass2, methodParams2, callback2) {
       assert.strictEqual(obj, mbeanServerConnection.mbeanServerConnection);
+      assert.strictEqual(method, method2);
       callback.apply(mbeanServerConnection, arguments);
     };
     mbeanServerConnection[method].apply(mbeanServerConnection, methodParams);

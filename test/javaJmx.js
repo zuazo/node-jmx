@@ -96,7 +96,8 @@ describe("JavaJmx", function() {
       assert.deepEqual(attributes, [ "attribute", "attribute" ] );
       assert.strictEqual(typeof callback, "function");
       assert.strictEqual(undef, undefined);
-      callback();
+      attributes = { toArray: function(cb) { cb(false, []); } };
+      callback(attributes);
     };
     javaJmx.getAttributes("mbean", [ "attribute", "attribute" ], function(attr) {
       done();
