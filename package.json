@@ -1,6 +1,6 @@
 {
   "name": "jmx",
-  "version": "0.4.0-dev",
+  "version": "0.4.0",
   "description": "Bridge library to communicate with java applications through JMX.",
   "homepage": "http://onddo.github.io/node-jmx",
   "bugs": "https://github.com/onddo/node-jmx/issues",
@@ -29,7 +29,7 @@
   } ],
   "readmeFilename": "README.md",
   "engines": {
-    "node": ">=0.6.0"
+    "node": ">=0.10.0"
   },
   "dependencies": {
     "async": "~1.3.0",

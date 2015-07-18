@@ -3,9 +3,9 @@
 node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
-[![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
+[![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx/0.4.0.svg)](https://codeclimate.com/github/onddo/node-jmx)
 [![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
+[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx/0.4.0.svg)](https://coveralls.io/r/onddo/node-jmx?branch=0.4.0)
 
 ## Requirements
 
@@ -186,6 +186,13 @@ $ NODE_DEBUG="jmx" node [...]
 ```
 
 ## History
+
+### 0.4.0
+
+* Add #getAttributes method ([issue #7](https://github.com/onddo/node-jmx/pull/7), thanks [@ericbroda](https://github.com/ericbroda)).
+* Update dependencies: `async@~1.3.0`, `java@~0.5.0`.
+* Add node version `0.12` support.
+* Remove node version `0.8` support.
 
 ### 0.3.1
 
