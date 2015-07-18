@@ -187,6 +187,10 @@ $ NODE_DEBUG="jmx" node [...]
 
 ## History
 
+### 0.4.1
+
+* Fix badge links.
+
 ### 0.4.0
 
 * Add #getAttributes method ([issue #7](https://github.com/onddo/node-jmx/pull/7), thanks [@ericbroda](https://github.com/ericbroda)).
