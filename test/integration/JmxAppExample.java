@@ -62,7 +62,7 @@ public class JmxAppExample implements JmxAppExampleMBean {
 
     /* MBean registering logic */
 
-    private static String jmxDomain = "com.onddo.test";
+    private static String jmxDomain = "com.example.test";
     private static String mbeanName = "JmxAppExample";
     private static MBeanServer mbs = null;
 

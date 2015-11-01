@@ -2,15 +2,15 @@
   "name": "jmx",
   "version": "0.5.0-dev",
   "description": "Bridge library to communicate with java applications through JMX.",
-  "homepage": "http://onddo.github.io/node-jmx",
-  "bugs": "https://github.com/onddo/node-jmx/issues",
+  "homepage": "http://zuazo.github.io/node-jmx",
+  "bugs": "https://github.com/zuazo/node-jmx/issues",
   "main": "index.js",
   "scripts": {
     "test": "make style test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/onddo/node-jmx.git"
+    "url": "https://github.com/zuazo/node-jmx.git"
   },
   "keywords": [
     "jmx",
@@ -20,7 +20,7 @@
   ],
   "author": {
     "name": "Xabier de Zuazo",
-    "email": "xabier@onddo.com",
+    "email": "xabier@zuazo.org",
     "url": "https://github.com/zuazo"
   },
   "licenses": [ {

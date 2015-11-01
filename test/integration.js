@@ -69,7 +69,7 @@ describe("Integration tests", function() {
       async.each(clients, function(client, cb) {
         client.connect();
         client.on("connect", function() {
-          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
             client.disconnect();
             cb();
           });
@@ -91,7 +91,7 @@ describe("Integration tests", function() {
         }
       });
       client.on("connect", function() {
-        client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {});
+        client.invoke("com.example.test:type=JmxAppExample", "callVoidMethod", [], function(data) {});
         client.disconnect();
       });
     });
@@ -127,7 +127,7 @@ describe("Integration tests", function() {
       });
 
       it("#getAttributes", function(done) {
-        client.getAttributes("com.onddo.test:type=JmxAppExample", [ "LongAttr", "LongAttr" ], function(values) {
+        client.getAttributes("com.example.test:type=JmxAppExample", [ "LongAttr", "LongAttr" ], function(values) {
           values.forEach(function(value) {
             assert.ok(typeof value === "object" && typeof value.longValue === "string");
           });
@@ -136,7 +136,7 @@ describe("Integration tests", function() {
       });
 
       it("#getAttribute", function(done) {
-        client.getAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", function(value) {
+        client.getAttribute("com.example.test:type=JmxAppExample", "LongAttr", function(value) {
           assert.ok(typeof value === "object" && typeof value.longValue === "string");
           done();
         });
@@ -172,20 +172,20 @@ describe("Integration tests", function() {
         }
 
         client.listMBeans(function(mbeans) {
-          assert.ok(arrayContains(mbeans, "com.onddo.test:type=JmxAppExample"));
+          assert.ok(arrayContains(mbeans, "com.example.test:type=JmxAppExample"));
           done();
         });
       });
 
       describe("#invoke", function() {
         it("invokes a method", function(done) {
-          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callVoidMethod", [], function(data) {
             done();
           });
         });
 
         it("invokes a method with simple args", function(done) {
-          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithSimpleArgs", [ "hello" ], function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callVoidWithSimpleArgs", [ "hello" ], function(data) {
             done();
           });
         });
@@ -193,20 +193,20 @@ describe("Integration tests", function() {
         it("invokes a method with complex args using className", function(done) {
           var values = [ 1, 5, 22];
           var classNames = [ "long", "int", "java.lang.Long" ];
-          client.invoke("com.onddo.test:type=JmxAppExample", "callVoidWithMixedArguments", values, classNames, function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callVoidWithMixedArguments", values, classNames, function(data) {
             done();
           });
         });
 
         it("returns long values correctly", function(done) {
-          client.invoke("com.onddo.test:type=JmxAppExample", "callLongWithSimpleArgs", [], function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callLongWithSimpleArgs", [], function(data) {
             assert.ok(typeof data.longValue === "string");
             done();
           });
         });
 
         it("returns java.lang.Long values correctly", function(done) {
-          client.invoke("com.onddo.test:type=JmxAppExample", "callLongObjWithSimpleArgs", [], function(data) {
+          client.invoke("com.example.test:type=JmxAppExample", "callLongObjWithSimpleArgs", [], function(data) {
             assert.ok(typeof data.longValue === "string");
             done();
           });
@@ -217,7 +217,7 @@ describe("Integration tests", function() {
       describe("#setAttribute", function() {
 
         it("sets a simple string value", function(done) {
-          var domain = "com.onddo.test:type=JmxAppExample";
+          var domain = "com.example.test:type=JmxAppExample";
           var attribute = "StringAttr";
           var values = [ "begin", "end" ];
           client.setAttribute(domain, attribute, values[0], function() {
@@ -234,19 +234,19 @@ describe("Integration tests", function() {
         });
 
         it("accepts String object values", function(done) {
-          client.setAttribute("com.onddo.test:type=JmxAppExample", "StringAttr", "test", "java.lang.String", function() {
+          client.setAttribute("com.example.test:type=JmxAppExample", "StringAttr", "test", "java.lang.String", function() {
             done();
           });
         });
 
         it("sets long values", function(done) {
-          client.setAttribute("com.onddo.test:type=JmxAppExample", "LongAttr", 22, function() {
+          client.setAttribute("com.example.test:type=JmxAppExample", "LongAttr", 22, function() {
             done();
           });
         });
 
         it("sets java.lang.Long values using className", function(done) {
-          client.setAttribute("com.onddo.test:type=JmxAppExample", "LongObjAttr", 33, "java.lang.Long", function() {
+          client.setAttribute("com.example.test:type=JmxAppExample", "LongObjAttr", 33, "java.lang.Long", function() {
             done();
           });
         });

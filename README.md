@@ -3,9 +3,9 @@
 node.js bridge library to communicate with java applications through JMX.
 
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
-[![Code Climate](http://img.shields.io/codeclimate/github/onddo/node-jmx.svg)](https://codeclimate.com/github/onddo/node-jmx)
-[![Build Status](http://img.shields.io/travis/onddo/node-jmx.svg)](https://travis-ci.org/onddo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/onddo/node-jmx.svg)](https://coveralls.io/r/onddo/node-jmx?branch=master)
+[![Code Climate](http://img.shields.io/codeclimate/github/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
+[![Build Status](http://img.shields.io/travis/zuazo/node-jmx.svg)](https://travis-ci.org/zuazo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx.svg)](https://coveralls.io/r/zuazo/node-jmx?branch=master)
 
 ## Requirements
 
@@ -193,7 +193,7 @@ $ NODE_DEBUG="jmx" node [...]
 
 ### 0.4.0
 
-* Add #getAttributes method ([issue #7](https://github.com/onddo/node-jmx/pull/7), thanks [@ericbroda](https://github.com/ericbroda)).
+* Add #getAttributes method ([issue #7](https://github.com/zuazo/node-jmx/pull/7), thanks [@ericbroda](https://github.com/ericbroda)).
 * Update dependencies: `async@~1.3.0`, `java@~0.5.0`.
 * Add node version `0.12` support.
 * Remove node version `0.8` support.
@@ -204,11 +204,11 @@ $ NODE_DEBUG="jmx" node [...]
 
 ### 0.3.0
 
-* package.json: udpate package dependencies (fixes [issue #3](https://github.com/onddo/node-jmx/issues/3)).
+* package.json: udpate package dependencies (fixes [issue #3](https://github.com/zuazo/node-jmx/issues/3)).
 * MBeanServerConnection:
  * Define *credentials* and *instancesAr* variables.
  * Some code improvements.
-* Allow premature disconnections (fixes [issue #2](https://github.com/onddo/node-jmx/issues/2)).
+* Allow premature disconnections (fixes [issue #2](https://github.com/zuazo/node-jmx/issues/2)).
 * Fix all [JSHint](http://www.jshint.com/) errors and integrate in the Makefile.
 * README: Add [Code Climate](https://codeclimate.com/) badge.
 * Makefile: Use relative path for jscoverage.
@@ -240,9 +240,10 @@ $ NODE_DEBUG="jmx" node [...]
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@onddo.com>)
+| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
 | **Contributor:**     | [Eric](https://github.com/ericbroda)
-| **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL. (www.onddo.com)
+| **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
+| **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
 Licensed under the Apache License, Version 2.0 (the "License");
