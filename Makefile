@@ -29,4 +29,8 @@ test-no-coveralls:
 mocha:
 	@NODE_ENV=test ./node_modules/.bin/mocha -b --recursive --reporter $(REPORTER)
 
+test-java-classes:
+	javac -version 2>&1 | grep -F 'javac 1.7'
+	javac test/*/*.java
+
 .PHONY: test
