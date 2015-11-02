@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Node-jmx by onddo</title>
+    <title>Node-jmx by zuazo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -13,9 +13,9 @@
     <section class="page-header">
       <h1 class="project-name">Node-jmx</h1>
       <h2 class="project-tagline">node.js library to connect with java applications through JMX.</h2>
-      <a href="https://github.com/onddo/node-jmx" class="btn">View on GitHub</a>
-      <a href="https://github.com/onddo/node-jmx/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/onddo/node-jmx/tarball/master" class="btn">Download .tar.gz</a>
+      <a href="https://github.com/zuazo/node-jmx" class="btn">View on GitHub</a>
+      <a href="https://github.com/zuazo/node-jmx/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zuazo/node-jmx/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
@@ -26,7 +26,7 @@
 
 <p><a href="http://badge.fury.io/js/jmx"><img src="https://badge.fury.io/js/jmx.svg" alt="NPM version"></a>
 <a href="https://codeclimate.com/github/onddo/node-jmx"><img src="http://img.shields.io/codeclimate/github/onddo/node-jmx.svg" alt="Code Climate"></a>
-<a href="https://travis-ci.org/onddo/node-jmx"><img src="http://img.shields.io/travis/onddo/node-jmx/0.4.1.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/zuazo/node-jmx"><img src="http://img.shields.io/travis/zuazo/node-jmx/0.4.1.svg" alt="Build Status"></a>
 <a href="https://coveralls.io/r/onddo/node-jmx?branch=master"><img src="http://img.shields.io/coveralls/onddo/node-jmx.svg" alt="Coverage Status"></a></p>
 
 <h2>
@@ -60,16 +60,16 @@ client.on(<span class="pl-s"><span class="pl-pds">"</span>connect<span class="pl
 
   client.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
     <span class="pl-k">var</span> used <span class="pl-k">=</span> data.getSync(<span class="pl-s"><span class="pl-pds">'</span>used<span class="pl-pds">'</span></span>);
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage used: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> used.longValue);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage used: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> used.longValue);
     <span class="pl-c">// console.log(data.toString());</span>
   });
 
   client.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Verbose<span class="pl-pds">"</span></span>, <span class="pl-c1">true</span>, <span class="pl-k">function</span>() {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Memory verbose on<span class="pl-pds">"</span></span>); <span class="pl-c">// callback is optional</span>
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Memory verbose on<span class="pl-pds">"</span></span>); <span class="pl-c">// callback is optional</span>
   });
 
   client.invoke(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gc<span class="pl-pds">"</span></span>, [], <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>gc() done<span class="pl-pds">"</span></span>);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>gc() done<span class="pl-pds">"</span></span>);
   });
 
 });</pre></div>
@@ -383,7 +383,7 @@ See the License for the specific language governing permissions and
 limitations under the License.</p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/onddo/node-jmx">Node-jmx</a> is maintained by <a href="https://github.com/onddo">onddo</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/zuazo/node-jmx">Node-jmx</a> is maintained by <a href="https://github.com/zuazo">zuazo</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
