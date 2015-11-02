@@ -1,23 +1,21 @@
 # node-jmx
 
-node.js bridge library to communicate with java applications through JMX.
-
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
 [![Build Status](http://img.shields.io/travis/zuazo/node-jmx.svg)](https://travis-ci.org/zuazo/node-jmx)
 [![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx.svg)](https://coveralls.io/r/zuazo/node-jmx?branch=master)
 
+Node.js bridge library to communicate with Java applications through JMX.
+
 ## Requirements
 
 * Tested with node `>= 0.10`.
-* Java version 6 or higher.
-* `node-java`: See [its installation instructions](https://github.com/joeferner/node-java/tree/v0.5.4#installation)
+* Java version `6` or higher.
+* `node-java`: See [its installation instructions](https://github.com/joeferner/node-java/tree/v0.6.0#installation)
 
 ## Installation
 
-```bash
-$ npm install jmx
-```
+    $ npm install jmx
 
 ## Usage examples
 
@@ -160,80 +158,29 @@ client.on("error", function(err) {
 });
 ```
 
-## Testing
-
-```bash
-$ npm install -g jshint
-$ make style test
-```
-
-You will need to set the `JAVA_HOME` environment variable if the java binary is not in your *PATH*.
-
-### Coverage
-
-```bash
-$ make test-cov
-```
-
-The HTML output file will be at `./coverage.html`.
-
 ## Debugging
 
 You can enable debugging and error printing to console using `NODE_DEBUG` environment variable:
 
-```bash
-$ NODE_DEBUG="jmx" node [...]
-```
+    $ NODE_DEBUG="jmx" node [...]
+
+## Testing
+
+See [TESTING.md](https://github.com/zuazo/node-jmx/blob/master/TESTING.md).
+
+## Contributing
+
+Please do not hesitate to [open an issue](https://github.com/zuazo/node-jmx/issues/new) with any questions or problems.
+
+See [CONTRIBUTING.md](https://github.com/zuazo/node-jmx/blob/master/CONTRIBUTING.md).
+
+## TODO
+
+See [TODO.md](https://github.com/zuazo/node-jmx/blob/master/TODO.md).
 
 ## History
 
-### 0.4.1
-
-* Fix badge links.
-
-### 0.4.0
-
-* Add #getAttributes method ([issue #7](https://github.com/zuazo/node-jmx/pull/7), thanks [@ericbroda](https://github.com/ericbroda)).
-* Update dependencies: `async@~1.3.0`, `java@~0.5.0`.
-* Add node version `0.12` support.
-* Remove node version `0.8` support.
-
-### 0.3.1
-
-* Remove jshint dependency from *package.json*.
-
-### 0.3.0
-
-* package.json: udpate package dependencies (fixes [issue #3](https://github.com/zuazo/node-jmx/issues/3)).
-* MBeanServerConnection:
- * Define *credentials* and *instancesAr* variables.
- * Some code improvements.
-* Allow premature disconnections (fixes [issue #2](https://github.com/zuazo/node-jmx/issues/2)).
-* Fix all [JSHint](http://www.jshint.com/) errors and integrate in the Makefile.
-* README: Add [Code Climate](https://codeclimate.com/) badge.
-* Makefile: Use relative path for jscoverage.
-* Avoid using *should* in tests.
-
-### 0.2.1
-
-* Travis hostname errors fixed.
-* Removed node `0.6` support: not supported by the last `node-java` version.
-* Homepage changed to GitHub Pages.
-
-### 0.2.0
-
-* Added #listMBeans method.
-
-### 0.1.1
-
-* More tests added.
-* Travis and Coveralls integration.
-* JavaJmx#setAttribute className parameter bug fixed.
-* JavaJmx#invoke and javaJmx#setAttribute function parameters management improved.
-
-### 0.1.0
-
-* The first published version.
+See [CHANGELOG.md](https://github.com/zuazo/node-jmx/blob/master/CHANGELOG.md).
 
 
 ## License and Author
@@ -246,15 +193,14 @@ $ NODE_DEBUG="jmx" node [...]
 | **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
