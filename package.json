@@ -1,6 +1,6 @@
 {
   "name": "jmx",
-  "version": "0.5.0",
+  "version": "0.6.0-dev",
   "description": "Bridge library to communicate with Java applications through JMX.",
   "homepage": "http://zuazo.github.io/node-jmx",
   "bugs": "https://github.com/zuazo/node-jmx/issues",
