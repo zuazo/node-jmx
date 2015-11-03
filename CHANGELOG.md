@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of `jmx` Node.js module.
 
+## 0.5.0 (2015-11-03)
+
+* Update `java` dependency to `~0.6.0` (fixes [issue #11](https://github.com/zuazo/node-jmx/issues/11), thanks [Rick ChangRick Chang](https://github.com/redice) for the help).
+ * Add Node.js `4` support.
+* Update `async` dependency to `~1.5.0`.
+* Update contact information and links after migration.
+* Documentation improvements.
+* Migrate to Travis CI container-based infrastructure.
+* Makefile: Add test-java-classes task.
+
 ## 0.4.1 (2014-07-18)
 
 * Fix badge links.
