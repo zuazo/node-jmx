@@ -22,59 +22,60 @@
       <h1>
 <a id="node-jmx" class="anchor" href="#node-jmx" aria-hidden="true"><span class="octicon octicon-link"></span></a>node-jmx</h1>
 
-<p>node.js bridge library to communicate with java applications through JMX.</p>
-
 <p><a href="http://badge.fury.io/js/jmx"><img src="https://badge.fury.io/js/jmx.svg" alt="NPM version"></a>
-<a href="https://codeclimate.com/github/onddo/node-jmx"><img src="http://img.shields.io/codeclimate/github/onddo/node-jmx.svg" alt="Code Climate"></a>
-<a href="https://travis-ci.org/zuazo/node-jmx"><img src="http://img.shields.io/travis/zuazo/node-jmx/0.4.1.svg" alt="Build Status"></a>
-<a href="https://coveralls.io/r/onddo/node-jmx?branch=master"><img src="http://img.shields.io/coveralls/onddo/node-jmx.svg" alt="Coverage Status"></a></p>
+<a href="https://codeclimate.com/github/zuazo/node-jmx"><img src="http://img.shields.io/codeclimate/github/zuazo/node-jmx.svg" alt="Code Climate"></a>
+<a href="https://travis-ci.org/zuazo/node-jmx"><img src="http://img.shields.io/travis/zuazo/node-jmx.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/r/zuazo/node-jmx?branch=master"><img src="http://img.shields.io/coveralls/zuazo/node-jmx.svg" alt="Coverage Status"></a></p>
+
+<p>Node.js bridge library to communicate with Java applications through JMX.</p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
 <li>Tested with node <code>&gt;= 0.10</code>.</li>
-<li>Java version 6 or higher.</li>
+<li>Java version <code>6</code> or higher.</li>
 <li>
-<code>node-java</code>: See <a href="https://github.com/joeferner/node-java/tree/v0.5.4#installation">its installation instructions</a>
+<code>node-java</code>: See <a href="https://github.com/joeferner/node-java/tree/v0.6.0#installation">its installation instructions</a>
 </li>
 </ul>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight highlight-source-shell"><pre>$ npm install jmx</pre></div>
+<pre><code>$ npm install jmx
+</code></pre>
 
 <h2>
 <a id="usage-examples" class="anchor" href="#usage-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage examples</h2>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> jmx <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>jmx<span class="pl-pds">"</span></span>);
 
-client <span class="pl-k">=</span> jmx.createClient({
+client <span class="pl-k">=</span> <span class="pl-smi">jmx</span>.<span class="pl-en">createClient</span>({
   host<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>localhost<span class="pl-pds">"</span></span>, <span class="pl-c">// optional</span>
   port<span class="pl-k">:</span> <span class="pl-c1">3000</span>
 });
 
-client.connect();
-client.on(<span class="pl-s"><span class="pl-pds">"</span>connect<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>() {
+<span class="pl-smi">client</span>.<span class="pl-en">connect</span>();
+<span class="pl-smi">client</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">"</span>connect<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>() {
 
-  client.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
-    <span class="pl-k">var</span> used <span class="pl-k">=</span> data.getSync(<span class="pl-s"><span class="pl-pds">'</span>used<span class="pl-pds">'</span></span>);
-    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage used: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> used.longValue);
+  <span class="pl-smi">client</span>.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
+    <span class="pl-k">var</span> used <span class="pl-k">=</span> <span class="pl-smi">data</span>.<span class="pl-en">getSync</span>(<span class="pl-s"><span class="pl-pds">'</span>used<span class="pl-pds">'</span></span>);
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>HeapMemoryUsage used: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">used</span>.<span class="pl-smi">longValue</span>);
     <span class="pl-c">// console.log(data.toString());</span>
   });
 
-  client.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Verbose<span class="pl-pds">"</span></span>, <span class="pl-c1">true</span>, <span class="pl-k">function</span>() {
+  <span class="pl-smi">client</span>.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Verbose<span class="pl-pds">"</span></span>, <span class="pl-c1">true</span>, <span class="pl-k">function</span>() {
     <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Memory verbose on<span class="pl-pds">"</span></span>); <span class="pl-c">// callback is optional</span>
   });
 
-  client.invoke(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gc<span class="pl-pds">"</span></span>, [], <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
+  <span class="pl-smi">client</span>.<span class="pl-en">invoke</span>(<span class="pl-s"><span class="pl-pds">"</span>java.lang:type=Memory<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gc<span class="pl-pds">"</span></span>, [], <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
     <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>gc() done<span class="pl-pds">"</span></span>);
   });
 
 });</pre></div>
 
-<div class="highlight highlight-source-js"><pre>client <span class="pl-k">=</span> jmx.createClient({
+<div class="highlight highlight-source-js"><pre>client <span class="pl-k">=</span> <span class="pl-smi">jmx</span>.<span class="pl-en">createClient</span>({
   service<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi<span class="pl-pds">"</span></span>
 });</pre></div>
 
@@ -223,7 +224,7 @@ client.on(<span class="pl-s"><span class="pl-pds">"</span>connect<span class="pl
 <li>
 <code>value</code> - The attribute value.</li>
 <li>
-<code>className</code> (optional) - The attribute java className. Sometimes may be necessary to use this if value type is not correctly detected (gives a <em>InvalidAttributeValueException</em>). For example `"java.lang.Long".</li>
+<code>className</code> (optional) - The attribute java className. Sometimes may be necessary to use this if value type is not correctly detected (gives a <em>InvalidAttributeValueException</em>). For example <code>"java.lang.Long"</code>.</li>
 <li>
 <code>callback()</code> (optional)</li>
 </ul>
@@ -233,110 +234,39 @@ client.on(<span class="pl-s"><span class="pl-pds">"</span>connect<span class="pl
 
 <p>Errors are <strong>not printed</strong> to the console by default. You can catch them with something like the following:</p>
 
-<div class="highlight highlight-source-js"><pre>client.on(<span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">err</span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">client</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">err</span>) {
   <span class="pl-c">// ...</span>
 });</pre></div>
-
-<h2>
-<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
-
-<div class="highlight highlight-source-shell"><pre>$ npm install -g jshint
-$ make style <span class="pl-c1">test</span></pre></div>
-
-<p>You will need to set the <code>JAVA_HOME</code> environment variable if the java binary is not in your <em>PATH</em>.</p>
-
-<h3>
-<a id="coverage" class="anchor" href="#coverage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coverage</h3>
-
-<div class="highlight highlight-source-shell"><pre>$ make <span class="pl-c1">test</span>-cov</pre></div>
-
-<p>The HTML output file will be at <code>./coverage.html</code>.</p>
 
 <h2>
 <a id="debugging" class="anchor" href="#debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging</h2>
 
 <p>You can enable debugging and error printing to console using <code>NODE_DEBUG</code> environment variable:</p>
 
-<div class="highlight highlight-source-shell"><pre>$ NODE_DEBUG=<span class="pl-s"><span class="pl-pds">"</span>jmx<span class="pl-pds">"</span></span> node [...]</pre></div>
+<pre><code>$ NODE_DEBUG="jmx" node [...]
+</code></pre>
+
+<h2>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
+
+<p>See <a href="https://github.com/zuazo/node-jmx/blob/master/TESTING.md">TESTING.md</a>.</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Please do not hesitate to <a href="https://github.com/zuazo/node-jmx/issues/new">open an issue</a> with any questions or problems.</p>
+
+<p>See <a href="https://github.com/zuazo/node-jmx/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<p>See <a href="https://github.com/zuazo/node-jmx/blob/master/TODO.md">TODO.md</a>.</p>
 
 <h2>
 <a id="history" class="anchor" href="#history" aria-hidden="true"><span class="octicon octicon-link"></span></a>History</h2>
 
-<h3>
-<a id="041" class="anchor" href="#041" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.4.1</h3>
-
-<ul>
-<li>Fix badge links.</li>
-</ul>
-
-<h3>
-<a id="040" class="anchor" href="#040" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.4.0</h3>
-
-<ul>
-<li>Add #getAttributes method (<a href="https://github.com/onddo/node-jmx/pull/7">issue #7</a>, thanks <a href="https://github.com/ericbroda">@ericbroda</a>).</li>
-<li>Update dependencies: <code>async@~1.3.0</code>, <code>java@~0.5.0</code>.</li>
-<li>Add node version <code>0.12</code> support.</li>
-<li>Remove node version <code>0.8</code> support.</li>
-</ul>
-
-<h3>
-<a id="031" class="anchor" href="#031" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.3.1</h3>
-
-<ul>
-<li>Remove jshint dependency from <em>package.json</em>.</li>
-</ul>
-
-<h3>
-<a id="030" class="anchor" href="#030" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.3.0</h3>
-
-<ul>
-<li>package.json: udpate package dependencies (fixes <a href="https://github.com/onddo/node-jmx/issues/3">issue #3</a>).</li>
-<li>MBeanServerConnection:
-
-<ul>
-<li>Define <em>credentials</em> and <em>instancesAr</em> variables.</li>
-<li>Some code improvements.</li>
-</ul>
-</li>
-<li>Allow premature disconnections (fixes <a href="https://github.com/onddo/node-jmx/issues/2">issue #2</a>).</li>
-<li>Fix all <a href="http://www.jshint.com/">JSHint</a> errors and integrate in the Makefile.</li>
-<li>README: Add <a href="https://codeclimate.com/">Code Climate</a> badge.</li>
-<li>Makefile: Use relative path for jscoverage.</li>
-<li>Avoid using <em>should</em> in tests.</li>
-</ul>
-
-<h3>
-<a id="021" class="anchor" href="#021" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2.1</h3>
-
-<ul>
-<li>Travis hostname errors fixed.</li>
-<li>Removed node <code>0.6</code> support: not supported by the last <code>node-java</code> version.</li>
-<li>Homepage changed to GitHub Pages.</li>
-</ul>
-
-<h3>
-<a id="020" class="anchor" href="#020" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2.0</h3>
-
-<ul>
-<li>Added #listMBeans method.</li>
-</ul>
-
-<h3>
-<a id="011" class="anchor" href="#011" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.1</h3>
-
-<ul>
-<li>More tests added.</li>
-<li>Travis and Coveralls integration.</li>
-<li>JavaJmx#setAttribute className parameter bug fixed.</li>
-<li>JavaJmx#invoke and javaJmx#setAttribute function parameters management improved.</li>
-</ul>
-
-<h3>
-<a id="010" class="anchor" href="#010" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1.0</h3>
-
-<ul>
-<li>The first published version.</li>
-</ul>
+<p>See <a href="https://github.com/zuazo/node-jmx/blob/master/CHANGELOG.md">CHANGELOG.md</a>.</p>
 
 <h2>
 <a id="license-and-author" class="anchor" href="#license-and-author" aria-hidden="true"><span class="octicon octicon-link"></span></a>License and Author</h2>
@@ -352,7 +282,7 @@ $ make style <span class="pl-c1">test</span></pre></div>
 <tr>
 <td align="left"><strong>Author:</strong></td>
 <td align="left">
-<a href="https://github.com/zuazo">Xabier de Zuazo</a> (<a href="mailto:xabier@onddo.com">xabier@onddo.com</a>)</td>
+<a href="https://github.com/zuazo">Xabier de Zuazo</a> (<a href="mailto:xabier@zuazo.org">xabier@zuazo.org</a>)</td>
 </tr>
 <tr>
 <td align="left"><strong>Contributor:</strong></td>
@@ -360,7 +290,11 @@ $ make style <span class="pl-c1">test</span></pre></div>
 </tr>
 <tr>
 <td align="left"><strong>Copyright:</strong></td>
-<td align="left">Copyright (c) 2013-2015 Onddo Labs, SL. (<a href="http://www.onddo.com">www.onddo.com</a>)</td>
+<td align="left">Copyright (c) 2015, Xabier de Zuazo</td>
+</tr>
+<tr>
+<td align="left"><strong>Copyright:</strong></td>
+<td align="left">Copyright (c) 2013-2015 Onddo Labs, SL.</td>
 </tr>
 <tr>
 <td align="left"><strong>License:</strong></td>
@@ -369,18 +303,18 @@ $ make style <span class="pl-c1">test</span></pre></div>
 </tbody>
 </table>
 
-<p>Licensed under the Apache License, Version 2.0 (the "License");
+<pre><code>Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at</p>
+You may obtain a copy of the License at
 
-<pre><code>http://www.apache.org/licenses/LICENSE-2.0
-</code></pre>
+    http://www.apache.org/licenses/LICENSE-2.0
 
-<p>Unless required by applicable law or agreed to in writing, software
+Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.</p>
+limitations under the License.
+</code></pre>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/zuazo/node-jmx">Node-jmx</a> is maintained by <a href="https://github.com/zuazo">zuazo</a>.</span>
