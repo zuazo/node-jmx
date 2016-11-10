@@ -8,7 +8,7 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - default-jdk
-    - g++
+    - g++-4.8
     - make
 
 node_js:
@@ -19,5 +19,5 @@ node_js:
 - "4.1"
 
 before_install:
-- export CXX=g++
+- export CXX=g++-4.8
 - npm install -g jshint || true
