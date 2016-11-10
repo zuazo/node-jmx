@@ -244,7 +244,7 @@ describe("JavaJmx", function() {
       });
     });
 
-    it(" accepts a signature as the fourth parameter without a callback", function(done) {
+    it("accepts a signature as the fourth parameter without a callback", function(done) {
       javaJmx.mbeanServerConnection.invoke = function(objectName, methodName, params, signature, callback, undef) {
         assert.strictEqual(objectName.toString(), "MBean1:type=MBean1");
         assert.strictEqual(methodName, "methodName");
