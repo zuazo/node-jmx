@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of `jmx` Node.js module.
 
-## master
+## 0.6.1 (2016-11-12)
 
 * Fix `java` dependency version to avoid installing *master* branch.
 
