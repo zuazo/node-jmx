@@ -1,6 +1,6 @@
 {
   "name": "jmx",
-  "version": "0.6.0",
+  "version": "0.6.1-dev",
   "description": "Bridge library to communicate with Java applications through JMX.",
   "homepage": "http://zuazo.github.io/node-jmx",
   "bugs": "https://github.com/zuazo/node-jmx/issues",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "async": "~1.5.0",
-    "java": "git://github.com/joeferner/node-java"
+    "java": "~0.7.0"
   },
 "devDependencies": {
     "mocha": "~2.0.1",
