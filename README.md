@@ -2,8 +2,8 @@
 
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
-[![Build Status](http://img.shields.io/travis/zuazo/node-jmx/0.6.0.svg)](https://travis-ci.org/zuazo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx/0.6.0.svg)](https://coveralls.io/github/zuazo/node-jmx?branch=0.6.0)
+[![Build Status](http://img.shields.io/travis/zuazo/node-jmx.svg)](https://travis-ci.org/zuazo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx.svg)](https://coveralls.io/github/zuazo/node-jmx?branch=master)
 
 Node.js bridge library to communicate with Java applications through JMX.
 
