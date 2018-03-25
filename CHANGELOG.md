@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of `jmx` Node.js module.
 
+## 0.7.0 (2018-03-25)
+
+* Update `java` dependency to `~0.9.0` ([issue #16](https://github.com/zuazo/node-jmx/issues/16), thanks [DarkSorrow](https://github.com/DarkSorrow)).
+
 ## 0.6.1 (2016-11-12)
 
 * Fix `java` dependency version to avoid installing *master* branch.
