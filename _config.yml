@@ -1,0 +1,8 @@
+title: Node-jmx
+description: node.js library to connect with java applications through JMX.
+google_analytics: UA-38093658-2
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
