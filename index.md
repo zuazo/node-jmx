@@ -1,9 +1,9 @@
 # node-jmx
 
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
-[![Code Climate](http://img.shields.io/codeclimate/github/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
-[![Build Status](http://img.shields.io/travis/zuazo/node-jmx.svg)](https://travis-ci.org/zuazo/node-jmx)
-[![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx.svg)](https://coveralls.io/r/zuazo/node-jmx?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability-percentage/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
+[![Build Status](http://img.shields.io/travis/zuazo/node-jmx/0.7.0.svg)](https://travis-ci.org/zuazo/node-jmx)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/node-jmx/0.7.0.svg)](https://coveralls.io/github/zuazo/node-jmx?branch=0.7.0)
 
 Node.js bridge library to communicate with Java applications through JMX.
 
@@ -11,7 +11,7 @@ Node.js bridge library to communicate with Java applications through JMX.
 
 * Tested with node `>= 0.10`.
 * Java version `6` or higher.
-* `node-java`: See [its installation instructions](https://github.com/joeferner/node-java/tree/v0.6.0#installation)
+* `node-java`: See [its installation instructions](https://github.com/joeferner/node-java/blob/v0.9.0/README.md#installation)
 
 ## Installation
 
@@ -189,6 +189,7 @@ See [CHANGELOG.md](https://github.com/zuazo/node-jmx/blob/master/CHANGELOG.md).
 |:---------------------|:-----------------------------------------|
 | **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
 | **Contributor:**     | [Eric](https://github.com/ericbroda)
+| **Contributor:**     | [DarkSorrow](https://github.com/DarkSorrow)
 | **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
 | **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
