@@ -1,5 +1,7 @@
 # node-jmx
 
+This is a fork of node-jmx modified by Kay Chan. Please checkout "0.8.0" in change log for the changes of this fork.
+
 [![NPM version](https://badge.fury.io/js/jmx.svg)](http://badge.fury.io/js/jmx)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability-percentage/zuazo/node-jmx.svg)](https://codeclimate.com/github/zuazo/node-jmx)
 [![Build Status](http://img.shields.io/travis/zuazo/node-jmx.svg)](https://travis-ci.org/zuazo/node-jmx)
@@ -28,30 +30,28 @@ client = jmx.createClient({
 });
 
 client.connect();
-client.on("connect", function() {
+client.on("connect", run);
 
-  client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage", function(data) {
-    var used = data.getSync('used');
-    console.log("HeapMemoryUsage used: " + used.longValue);
-    // console.log(data.toString());
-  });
+async function run () {
+  let data = await client.getAttribute("java.lang:type=Memory", "HeapMemoryUsage");
+  var used = data.getSync('used');
+  console.log("HeapMemoryUsage used: " + used.longValue);
 
-  client.setAttribute("java.lang:type=Memory", "Verbose", true, function() {
-    console.log("Memory verbose on"); // callback is optional
-  });
+  await client.setAttribute("java.lang:type=Memory", "Verbose", true);
+  console.log("Memory verbose on");
 
-  client.invoke("java.lang:type=Memory", "gc", [], function(data) {
-    console.log("gc() done");
-  });
-
-});
+  await client.invoke("java.lang:type=Memory", "gc", []);
+  console.log("gc() done");
+}
 ```
 
+Client can be created by service URL instead:
 ```js
 client = jmx.createClient({
   service: "service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi"
 });
 ```
+
 You can check the [node-java documentation](https://github.com/nearinfinity/node-java/blob/master/README.md#quick-examples) to learn how to work with java objects in node.js.
 
 ## Documentation
@@ -80,7 +80,7 @@ Connects to the JMX server. Emits `connect` event when done.
 
 Disconnects from the JMX server. Emits `disconnect` event when done.
 
-### Client.getAttribute(mbean, attribute, callback)
+### Client.getAttribute(mbean, attribute)
 
 Returns an attribute from a MBean.
 
@@ -88,7 +88,7 @@ Returns an attribute from a MBean.
 * `attribute` - Attribute name as string.
 * `callback(attrValue)`
 
-### Client.getAttributes(mbean, attributes, callback)
+### Client.getAttributes(mbean, attributes)
 
 Returns an attribute list from a MBean.
 
@@ -96,25 +96,25 @@ Returns an attribute list from a MBean.
 * `attributes` - Attribute names as an array of strings.
 * `callback(attrValue)`
 
-### Client.getDefaultDomain(callback)
+### Client.getDefaultDomain()
 
 Returns the default domain as string.
 
 * `callback(domainName)`
 
-### Client.getDomains(callback)
+### Client.getDomains()
 
 Returns an array of domain names.
 
 * `callback(domainsArray)`
 
-### Client.getMBeanCount(callback)
+### Client.getMBeanCount()
 
 Returns total the number of MBeans.
 
 * `callback(mbeanCount)`
 
-### Client.invoke(mbean, methodName, params, [signature,] [callback])
+### Client.invoke(mbean, methodName, params, [signature])
 
 Invokes a MBean operation.
 
@@ -124,7 +124,7 @@ Invokes a MBean operation.
 * `signature` (optional) - An array with the signature of the *params*. Sometimes may be necessary to use this if class names are not correctly detected (gives a *NoSuchMethodException*). For example `[ "int", "java.lang.Integer", "java.lang.String" ]`.
 * `callback(returnedValue)`
 
-### Client.listMBeans(callback)
+### Client.listMBeans()
 
 Lists server MBeans. Callback returns an array of strings containing MBean names.
 
@@ -132,13 +132,17 @@ Lists server MBeans. Callback returns an array of strings containing MBean names
 
 Adds a listener for the especified event.
 
+### Client.queryNamesWithObjectName(objectNameSearchString)
+
+Search names with object name query, referring to [MBeanServerConnection.queryNames](https://docs.oracle.com/javase/7/docs/api/javax/management/MBeanServerConnection.html#queryNames)
+
 #### events
 
 * `connect`
 * `disconnect`
 * `error` - Passes the error as first parameter to the callback function.
 
-### Client.setAttribute(mbean, attribute, value, [className,] [callback])
+### Client.setAttribute(mbean, attribute, value, [className])
 
 Changes an attribute value of the MBean.
 

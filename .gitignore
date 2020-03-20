@@ -16,3 +16,6 @@ lib-cov
 *.pid
 *.gz
 coverage.html
+/dev
+package-lock.json
+.vscode/
