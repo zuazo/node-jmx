@@ -1,4 +1,4 @@
-var Client = require("./lib/client"),
+var Client = require("./lib/client2"),
     assert = require("assert");
 
 function createClient(options) {

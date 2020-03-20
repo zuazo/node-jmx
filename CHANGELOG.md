@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of `jmx` Node.js module.
 
+## 0.8.0 (2020-03-20)
+
+* Update NPM modules
+* All APIs now return Promise, except the API inherited from EventEmitter
+* Add new API "queryNamesWithObjectName" w.r.t. "queryNames" in "MBeanServerConnection", with only "ObjectName" is support.
+
 ## 0.7.0 (2018-03-25)
 
 * Update `java` dependency to `~0.9.0` ([issue #16](https://github.com/zuazo/node-jmx/issues/16), thanks [DarkSorrow](https://github.com/DarkSorrow)).
