@@ -134,7 +134,7 @@ Adds a listener for the especified event.
 
 ### Client.queryNamesWithObjectName(objectNameSearchString)
 
-Search names with object name query, referring to [MBeanServerConnection.queryNames](https://docs.oracle.com/javase/7/docs/api/javax/management/MBeanServerConnection.html#queryNames(javax.management.ObjectName,%20javax.management.QueryExp)
+Search names with object name query, referring to [MBeanServerConnection.queryNames](https://docs.oracle.com/javase/7/docs/api/javax/management/MBeanServerConnection.html#queryNames)
 
 #### events
 
